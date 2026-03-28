@@ -1,0 +1,44 @@
+---
+interface Props {
+  paginaActual?: string;
+}
+const { paginaActual = '' } = Astro.props;
+---
+
+<nav>
+  <div class="nav-links">
+    <a href="/" class:list={[{ activo: paginaActual === 'inicio' }]}>Inicio</a>
+    <a href="/#experiencia" class:list={[{ activo: paginaActual === 'experiencia' }]}>experiencia</a>
+    <a href="/#proyectos" class:list={[{ activo: paginaActual === 'proyectos' }]}>proyectos</a>
+    <a href="/blog" class:list={[{ activo: paginaActual === 'blog' }]}>blog</a>
+    <a href="/#contacto" class:list={[{ activo: paginaActual === 'contacto' }]}>contacto</a>
+  </div>
+</nav>
+
+<style>
+  nav {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4rem;
+    font-size: 13px;
+    font-family: var(--mono);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.activo {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+</style>

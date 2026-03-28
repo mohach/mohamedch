@@ -1,0 +1,492 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf())
+  .slice(0, 3);
+
+function formatFecha(fecha: Date): string {
+  return fecha.toLocaleDateString('es-ES', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+
+const experiencia = [
+  {
+    periodo: '2024 — ahora',
+    rol: 'Ingeniero Senior',
+    empresa: 'Vercel',
+    descripcion:
+      'Construyendo la nube frontend. Trabajo en el panel de control, la infraestructura de despliegue y la experiencia del desarrollador.',
+  },
+  {
+    periodo: '2022 — 2024',
+    rol: 'Ingeniero de Software',
+    empresa: 'Linear',
+    descripcion:
+      'Implementé sincronización en tiempo real, interacciones centradas en el teclado y optimizaciones de rendimiento.',
+  },
+  {
+    periodo: '2020 — 2022',
+    rol: 'Desarrollador Full Stack',
+    empresa: 'Stripe',
+    descripcion:
+      'Diseñé flujos de pago y paneles para comercios. Lideré la migración a React 18 y mejoré los pipelines de CI/CD.',
+  },
+  {
+    periodo: '2018 — 2020',
+    rol: 'Ingeniero Frontend',
+    empresa: 'Startup',
+    descripcion:
+      'Primera contratación de ingeniería. Construí el producto principal desde cero con Next.js y Tailwind CSS.',
+  },
+];
+
+const proyectos = [
+  {
+    nombre: 'hybrid-astro-ui',
+    descripcion:
+      'Elementos de interfaz para Astro usando un modelo híbrido: Astro sin JS + mejora progresiva con web components.',
+    url: 'https://github.com/JorgeRosbel/hybrid-astro-ui',
+  },
+  {
+    nombre: 'http-sentinel',
+    descripcion:
+      'Librería TypeScript con un conjunto completo de clases de error HTTP y utilidades para su gestión.',
+    url: 'https://github.com/JorgeRosbel/http-sentinel',
+  },
+  {
+    nombre: 'gitzen',
+    descripcion:
+      'Herramienta CLI con IA para la generación automática de mensajes de commit en Git.',
+    url: 'https://github.com/JorgeRosbel/gitzen',
+  },
+  {
+    nombre: 'NovaBoost',
+    descripcion:
+      'Plantilla gratuita de blog con Astro 5 y TailwindCSS, optimizada para SEO con JSON-LD y generación de posts con IA.',
+    url: 'https://github.com/JorgeRosbel/NovaBoost',
+  },
+  {
+    nombre: 'astro-i18n',
+    descripcion:
+      'Librería de internacionalización sencilla para Astro con soporte completo de TypeScript.',
+    url: 'https://github.com/JorgeRosbel/astro-i18n',
+  },
+  {
+    nombre: 'Geofisik Tool',
+    descripcion:
+      'Aplicación web geofísica para monitorizar desplazamientos verticales con mapas interactivos y gráficos de series temporales.',
+    url: 'https://tool.geofisik.com/',
+  },
+];
+
+const habilidades = [
+  { nombre: 'React', tipo: 'Librería', experiencia: '4 años' },
+  { nombre: 'TypeScript', tipo: 'Lenguaje', experiencia: '3 años' },
+  { nombre: 'Astro', tipo: 'Framework', experiencia: '2 años' },
+  { nombre: 'Tailwind CSS', tipo: 'Diseño', experiencia: '4 años' },
+  { nombre: 'Node.js', tipo: 'Backend', experiencia: '3 años' },
+  { nombre: 'Kali Linux', tipo: 'Seguridad', experiencia: '1 año' },
+];
+---
+
+<Base titulo="Mohamed Chennani — Ingeniero Full Stack">
+  <main class="container">
+    <Nav paginaActual="inicio" />
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="disponible">disponible para trabajar</div>
+      <h1>
+        Mohamed Chennani<br />
+        <em>ingeniero full stack.</em>
+      </h1>
+      <p>
+        Construyo aplicaciones web de alto rendimiento y herramientas para desarrolladores.
+        Actualmente creando interfaces en <strong>Vercel</strong>.
+      </p>
+      <p>
+        Anteriormente en Linear, Stripe y startups en etapas tempranas. Me importa el código
+        limpio, los tiempos de carga rápidos y la experiencia de usuario bien pensada.
+      </p>
+      <p>
+        Cuando no estoy programando, contribuyo al código abierto, escribo sobre rendimiento web
+        o exploro nuevos frameworks.
+      </p>
+    </section>
+
+    <!-- EXPERIENCIA -->
+    <section id="experiencia">
+      <div class="seccion-etiqueta">experiencia</div>
+      {
+        experiencia.map((item) => (
+          <div class="exp-item">
+            <div class="exp-fecha">{item.periodo}</div>
+            <div class="exp-contenido">
+              <div class="exp-rol">{item.rol}</div>
+              <div class="exp-empresa">{item.empresa}</div>
+              <p class="exp-desc">{item.descripcion}</p>
+            </div>
+          </div>
+        ))
+      }
+    </section>
+
+    <!-- PROYECTOS -->
+    <section id="proyectos">
+      <div class="seccion-etiqueta">proyectos</div>
+      {
+        proyectos.map((p) => (
+          <a href={p.url} target="_blank" rel="noopener noreferrer" class="proyecto-item">
+            <div>
+              <div class="proyecto-nombre">{p.nombre}</div>
+              <div class="proyecto-desc">{p.descripcion}</div>
+            </div>
+            <span class="proyecto-flecha" aria-hidden="true">↗</span>
+          </a>
+        ))
+      }
+    </section>
+
+    <!-- BLOG (últimas entradas) -->
+    <section id="blog">
+      <div class="seccion-etiqueta">
+        últimas entradas
+        <a href="/blog" class="ver-todo">ver todo →</a>
+      </div>
+      {
+        posts.map((post) => (
+          <a href={`/blog/${post.slug}`} class="blog-item">
+            <div class="blog-meta">
+              <span class="blog-fecha">{formatFecha(post.data.fecha)}</span>
+              <span class="blog-etiqueta">{post.data.etiqueta}</span>
+            </div>
+            <div class="blog-titulo">{post.data.titulo}</div>
+            <div class="blog-desc">{post.data.descripcion}</div>
+          </a>
+        ))
+      }
+    </section>
+
+    <!-- HABILIDADES -->
+    <section id="habilidades">
+      <div class="seccion-etiqueta">habilidades</div>
+      <div class="skills-grid">
+        {
+          habilidades.map((s) => (
+            <div class="skill-chip">
+              <span class="skill-nombre">{s.nombre}</span>
+              <span class="skill-exp">{s.experiencia}</span>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="seccion-etiqueta">contacto</div>
+      <div class="contacto-links">
+        <a href="mailto:tu@email.com">correo</a>
+        <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer">github</a>
+        <a href="https://x.com/tu-usuario" target="_blank" rel="noopener noreferrer">x / twitter</a>
+        <a href="https://linkedin.com/in/tu-perfil" target="_blank" rel="noopener noreferrer">linkedin</a>
+      </div>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+
+  /* HERO */
+  .hero {
+    margin-bottom: 4rem;
+  }
+
+  .disponible {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--color-green);
+    margin-bottom: 1.25rem;
+  }
+
+  .disponible::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: pulso 2s ease-in-out infinite;
+  }
+
+  @keyframes pulso {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--color-muted);
+  }
+
+  .hero p {
+    color: var(--color-muted);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+    max-width: 540px;
+  }
+
+  .hero p strong {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  /* SECCIONES */
+  section {
+    margin-bottom: 3.5rem;
+  }
+
+  .seccion-etiqueta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 0.5px solid var(--color-line);
+  }
+
+  .ver-todo {
+    font-size: 11px;
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .ver-todo:hover {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  /* EXPERIENCIA */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 0.5px solid var(--color-line);
+  }
+
+  .exp-item:last-child {
+    border-bottom: none;
+  }
+
+  .exp-fecha {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--color-subtle);
+    padding-top: 2px;
+  }
+
+  .exp-rol {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0.15rem;
+  }
+
+  .exp-empresa {
+    font-size: 13px;
+    color: var(--color-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-desc {
+    font-size: 13.5px;
+    color: var(--color-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 480px) {
+    .exp-item {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+  }
+
+  /* PROYECTOS */
+  .proyecto-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 0.5px solid var(--color-line);
+    text-decoration: none;
+    transition: none;
+  }
+
+  .proyecto-item:last-child {
+    border-bottom: none;
+  }
+
+  .proyecto-nombre {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    transition: color 0.15s;
+  }
+
+  .proyecto-item:hover .proyecto-nombre {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .proyecto-desc {
+    font-size: 13px;
+    color: var(--color-muted);
+    line-height: 1.55;
+  }
+
+  .proyecto-flecha {
+    font-size: 14px;
+    color: var(--color-subtle);
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: transform 0.15s;
+  }
+
+  .proyecto-item:hover .proyecto-flecha {
+    transform: translate(2px, -2px);
+  }
+
+  /* BLOG */
+  .blog-item {
+    display: block;
+    padding: 1rem 0;
+    border-bottom: 0.5px solid var(--color-line);
+    text-decoration: none;
+  }
+
+  .blog-item:last-child {
+    border-bottom: none;
+  }
+
+  .blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .blog-fecha {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--color-subtle);
+  }
+
+  .blog-etiqueta {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--color-surface);
+    border: 0.5px solid var(--color-line);
+    color: var(--color-muted);
+  }
+
+  .blog-titulo {
+    font-size: 14.5px;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+    transition: text-decoration 0.15s;
+  }
+
+  .blog-item:hover .blog-titulo {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .blog-desc {
+    font-size: 13px;
+    color: var(--color-muted);
+    line-height: 1.55;
+  }
+
+  /* HABILIDADES */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+
+  .skill-chip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 0.85rem;
+    border: 0.5px solid var(--color-line);
+    border-radius: 6px;
+    font-size: 13px;
+  }
+
+  .skill-nombre {
+    font-weight: 500;
+  }
+
+  .skill-exp {
+    font-size: 11px;
+    color: var(--color-muted);
+    font-family: var(--mono);
+  }
+
+  /* CONTACTO */
+  .contacto-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .contacto-links a {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .contacto-links a:hover {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+</style>

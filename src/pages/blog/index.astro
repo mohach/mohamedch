@@ -1,0 +1,185 @@
+---
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf()
+);
+
+function formatFecha(fecha: Date): string {
+  return fecha.toLocaleDateString('es-ES', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+
+// Etiquetas únicas para el filtro
+const etiquetas = [...new Set(posts.map((p) => p.data.etiqueta))];
+---
+
+<Base
+  titulo="Blog — Mohamed Chennani"
+  descripcion="Artículos sobre rendimiento web, TypeScript, Astro y desarrollo de software."
+>
+  <main class="container">
+    <Nav paginaActual="blog" />
+
+    <div class="cabecera">
+      <h1>Blog</h1>
+      <p>Notas sobre rendimiento web, TypeScript, open source y lo que estoy aprendiendo.</p>
+    </div>
+
+    <div class="etiquetas">
+      <span class="etiqueta-filtro activo" data-filtro="todos">todos</span>
+      {etiquetas.map((e) => (
+        <span class="etiqueta-filtro" data-filtro={e}>{e}</span>
+      ))}
+    </div>
+
+    <div class="lista-posts" id="lista-posts">
+      {
+        posts.map((post) => (
+          <a href={`/blog/${post.slug}`} class="post-item" data-etiqueta={post.data.etiqueta}>
+            <div class="post-meta">
+              <span class="post-fecha">{formatFecha(post.data.fecha)}</span>
+              <span class="post-etiqueta">{post.data.etiqueta}</span>
+            </div>
+            <div class="post-titulo">{post.data.titulo}</div>
+            <div class="post-desc">{post.data.descripcion}</div>
+          </a>
+        ))
+      }
+    </div>
+  </main>
+</Base>
+
+<script>
+  const filtros = document.querySelectorAll<HTMLElement>('.etiqueta-filtro');
+  const posts = document.querySelectorAll<HTMLElement>('.post-item');
+
+  filtros.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filtros.forEach((b) => b.classList.remove('activo'));
+      btn.classList.add('activo');
+
+      const filtro = btn.dataset.filtro;
+      posts.forEach((post) => {
+        if (filtro === 'todos' || post.dataset.etiqueta === filtro) {
+          post.style.display = 'block';
+        } else {
+          post.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+
+  .cabecera {
+    margin-bottom: 2.5rem;
+  }
+
+  .cabecera h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+  }
+
+  .cabecera p {
+    color: var(--color-muted);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .etiquetas {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .etiqueta-filtro {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 0.5px solid var(--color-line);
+    color: var(--color-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .etiqueta-filtro:hover {
+    border-color: var(--color-text);
+    color: var(--color-text);
+  }
+
+  .etiqueta-filtro.activo {
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-color: var(--color-text);
+  }
+
+  .post-item {
+    display: block;
+    padding: 1.1rem 0;
+    border-bottom: 0.5px solid var(--color-line);
+    text-decoration: none;
+  }
+
+  .post-item:last-child {
+    border-bottom: none;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .post-fecha {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--color-subtle);
+  }
+
+  .post-etiqueta {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--color-surface);
+    border: 0.5px solid var(--color-line);
+    color: var(--color-muted);
+  }
+
+  .post-titulo {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+    line-height: 1.4;
+  }
+
+  .post-item:hover .post-titulo {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .post-desc {
+    font-size: 13px;
+    color: var(--color-muted);
+    line-height: 1.55;
+  }
+</style>
