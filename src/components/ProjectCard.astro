@@ -1,0 +1,200 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  href: string;
+  github?: string;
+  featured?: boolean;
+  caseStudy?: boolean;
+  index?: number;
+}
+
+const {
+  title,
+  description,
+  tags,
+  href,
+  github,
+  featured = false,
+  caseStudy = false,
+  index = 0,
+} = Astro.props;
+---
+
+<article
+  class={`project-card fade-in ${featured ? 'project-card--featured' : ''}`}
+  style={`animation-delay: ${index * 0.1}s`}
+>
+  <div class="project-card__header">
+    <div class="project-card__icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+      </svg>
+    </div>
+    <div class="project-card__actions">
+      {github && (
+        <a href={github} target="_blank" rel="noopener" class="project-card__action" title="Ver código">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+      )}
+      <a href={href} class="project-card__action project-card__action--primary" title="Ver proyecto">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="project-card__body">
+    <h3 class="project-card__title">
+      <a href={href}>{title}</a>
+    </h3>
+    <p class="project-card__desc">{description}</p>
+  </div>
+
+  <div class="project-card__footer">
+    <div class="project-card__tags">
+      {tags.map(tag => <span class="tag">{tag}</span>)}
+    </div>
+    {caseStudy && (
+      <span class="project-card__badge">Case Study</span>
+    )}
+  </div>
+</article>
+
+<style>
+  .project-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: var(--card-shadow);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  .project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-shadow-hover);
+    border-color: var(--border-strong);
+  }
+
+  .project-card:hover::before {
+    opacity: 0.6;
+  }
+
+  .project-card--featured {
+    border-color: rgba(14, 165, 233, 0.2);
+  }
+
+  .project-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .project-card__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-glow);
+    border: 0.5px solid rgba(14, 165, 233, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+  }
+
+  .project-card__actions {
+    display: flex;
+    gap: 6px;
+  }
+
+  .project-card__action {
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-sm);
+    border: 0.5px solid var(--border);
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition), border-color var(--transition), background var(--transition);
+  }
+
+  .project-card__action:hover {
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+    background: var(--surface-hover);
+  }
+
+  .project-card__action--primary:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .project-card__title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .project-card__title a:hover {
+    color: var(--accent);
+  }
+
+  .project-card__desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .project-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+  }
+
+  .project-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .project-card__badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 0.5px solid var(--accent);
+    padding: 2px 8px;
+    border-radius: 100px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+</style>

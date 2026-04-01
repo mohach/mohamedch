@@ -1,66 +1,63 @@
-# Portfolio — Mohamed Chennani
+# mohamedch.com — Astro Portfolio v3
 
-Portfolio personal en castellano construido con **Astro** y **Tailwind CSS**.
+Bilingual (EN/ES) personal portfolio for Mohamed Chennani.
+Clean light/dark minimal design. Built with Astro. CSS imported correctly via frontmatter.
 
-## Estructura del proyecto
-
-```
-src/
-├── components/
-│   └── Nav.astro           # Navegación principal
-├── content/
-│   ├── config.ts           # Schema de la colección blog
-│   └── blog/               # Artículos en Markdown
-│       ├── astro-islands-lcp.md
-│       ├── typescript-tipos-avanzados.md
-│       └── contribuir-open-source.md
-├── layouts/
-│   └── Base.astro          # Layout HTML base
-├── pages/
-│   ├── index.astro         # Página principal (sobre mí, experiencia, proyectos, blog, contacto)
-│   └── blog/
-│       ├── index.astro     # Listado del blog con filtro por etiqueta
-│       └── [slug].astro    # Página individual de cada post
-└── styles/
-    └── global.css          # Variables CSS globales (referencia)
-```
-
-## Instalación
+## Quick start
 
 ```bash
 npm install
-npm run dev
+npm run dev      # http://localhost:4321
+npm run build
+npm run preview
 ```
 
-## Añadir un nuevo post
+## URL structure
 
-Crea un archivo `.md` en `src/content/blog/` con este frontmatter:
+| Page    | English     | Spanish        |
+|---------|-------------|----------------|
+| Home    | /           | /es            |
+| Work    | /work       | /es/work       |
+| Blog    | /blog       | /es/blog       |
+| Contact | /contact    | /es/contact    |
 
-```markdown
----
-titulo: "Título del artículo"
-descripcion: "Descripción breve que aparece en el listado."
-fecha: 2025-04-01
-etiqueta: typescript   # aparece como filtro en /blog
-destacado: false
----
+Language switcher in nav switches between EN ↔ ES on every page.
 
-Contenido en Markdown aquí...
+## Files
+
+```
+src/
+├── i18n.ts                     ← ALL content + translations in one file
+├── styles/global.css           ← Design tokens, imported via BaseLayout
+├── layouts/BaseLayout.astro    ← Nav (lang switch + theme toggle), footer
+├── components/
+│   ├── ProjectPost.astro       ← Blog-post style project card
+│   └── SectionHeader.astro
+└── pages/
+    ├── index.astro             ← EN home
+    ├── work.astro              ← EN projects
+    ├── blog.astro              ← EN blog
+    ├── contact.astro           ← EN contact
+    ├── 404.astro
+    └── es/
+        ├── index.astro         ← ES home
+        ├── work.astro          ← ES projects
+        ├── blog.astro          ← ES blog
+        └── contact.astro       ← ES contact
 ```
 
-El slug de la URL se genera automáticamente a partir del nombre del archivo.
+## Customise
 
-## Personalizar
+All content lives in `src/i18n.ts`:
+- `personal` — name, email, phone, location
+- `projects.en` / `projects.es` — project data in both languages
+- `ui.en` / `ui.es` — all UI strings
+- `skills`, `langs`, `certs` — shared data used by both languages
 
-- **Información personal**: edita `src/pages/index.astro` — los arrays `experiencia`, `proyectos`, `habilidades` y la sección `contacto`.
-- **Tipografías**: definidas en `src/layouts/Base.astro` (Google Fonts) y en las variables `--serif`, `--mono`, `--sans`.
-- **Colores**: variables CSS en `src/layouts/Base.astro` dentro del bloque `<style is:global>`. Incluye soporte automático para modo oscuro.
+Update your real GitHub/LinkedIn links in `BaseLayout.astro` footer.
 
-## Despliegue
-
-Compatible con Vercel, Netlify y cualquier plataforma que soporte Node.js o salida estática.
+## Deploy
 
 ```bash
-npm run build    # genera la carpeta dist/
-npm run preview  # previsualiza la build en local
+npx vercel
 ```

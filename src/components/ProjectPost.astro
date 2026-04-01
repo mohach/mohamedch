@@ -1,0 +1,137 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  category: string;
+  date: string;
+  readTime: string;
+  summary: string;
+  tags: string[];
+  github?: string | null;
+  live?: string | null;
+  index?: number;
+  readMore?: string;
+  liveLabel?: string;
+  githubLabel?: string;
+}
+
+const {
+  title, category, date, readTime, summary,
+  tags, github, live, index = 0,
+  readMore = 'Read more →',
+  liveLabel = 'Live',
+  githubLabel = 'GitHub',
+} = Astro.props;
+---
+
+<article class="pp reveal" style={`transition-delay:${index * 0.07}s`}>
+  <div class="pp-meta">
+    <span class="label pp-cat">{category}</span>
+    <span class="pp-sep" aria-hidden="true">·</span>
+    <time class="label">{date}</time>
+    <span class="pp-sep" aria-hidden="true">·</span>
+    <span class="label">{readTime}</span>
+  </div>
+
+  <h3 class="pp-title">{title}</h3>
+  <p class="pp-summary">{summary}</p>
+
+  <div class="pp-footer">
+    <div class="pp-tags">
+      {tags.map(t => <span class="tag">{t}</span>)}
+    </div>
+    <div class="pp-links">
+      {github && (
+        <a href={github} target="_blank" rel="noopener" class="pp-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          {githubLabel}
+        </a>
+      )}
+      {live && (
+        <a href={live} target="_blank" rel="noopener" class="pp-link pp-link--live">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+          </svg>
+          {liveLabel}
+        </a>
+      )}
+    </div>
+  </div>
+</article>
+
+<style>
+.pp {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: none;
+}
+.pp:first-of-type { border-top: 1px solid var(--border); }
+
+.pp-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.pp-sep { color: var(--text-3); }
+
+.pp-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  transition: opacity 0.15s;
+}
+.pp:hover .pp-title { opacity: 0.65; }
+
+.pp-summary {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.7;
+  max-width: 680px;
+}
+
+.pp-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.pp-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+.pp-links { display: flex; gap: 8px; flex-shrink: 0; }
+
+.pp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  padding: 5px 11px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border-mid);
+  background: var(--bg-alt);
+  color: var(--text-2);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.pp-link:hover { color: var(--text); background: var(--bg-card); }
+.pp-link--live {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+.pp-link--live:hover { opacity: 0.82; color: var(--bg); }
+</style>

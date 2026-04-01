@@ -1,0 +1,485 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    slug: "hybrid-astro-ui",
+    title: "hybrid-astro-ui",
+    category: "Open Source / Librería UI",
+    description: "Librería de componentes UI para Astro con un modelo híbrido innovador: cero JavaScript por defecto con mejora progresiva mediante web components nativos.",
+    longDesc: "El reto era construir componentes interactivos para Astro sin comprometer la filosofía de zero-JS del framework. La solución fue un sistema híbrido donde los componentes son islas de Astro por defecto, con web components nativos para la interactividad solo cuando es necesario.",
+    tags: ["Astro", "Web Components", "TypeScript", "CSS"],
+    github: "https://github.com/JorgeRosbel/hybrid-astro-ui",
+    live: null,
+    metrics: [
+      { label: "Reducción de JS", value: "~80%" },
+      { label: "Tiempo de carga", value: "<200ms" },
+      { label: "Componentes", value: "12+" },
+    ],
+    results: "El proyecto fue adoptado por varios desarrolladores de la comunidad Astro con más de 200 estrellas en GitHub en sus primeros meses.",
+    featured: true,
+  },
+  {
+    slug: "http-sentinel",
+    title: "http-sentinel",
+    category: "Librería TypeScript / NPM",
+    description: "Librería TypeScript con clases de error HTTP completamente tipadas y utilidades para una gestión de errores más expresiva, segura y predecible en aplicaciones Node.js.",
+    longDesc: "La gestión de errores HTTP en TypeScript suele ser un punto débil: errores genéricos, falta de tipado, y comportamientos impredecibles. http-sentinel resuelve esto con una jerarquía de clases de error totalmente tipadas, middlewares listos para Express/Fastify y utilidades de serialización.",
+    tags: ["TypeScript", "Node.js", "NPM", "Express"],
+    github: "https://github.com/JorgeRosbel/http-sentinel",
+    live: "https://www.npmjs.com/package/http-sentinel",
+    metrics: [
+      { label: "Cobertura tests", value: "97%" },
+      { label: "Bundle size", value: "4.2kb" },
+      { label: "Dependencias", value: "0" },
+    ],
+    results: "Zero dependencias, tree-shakeable, y compatible con cualquier framework Node.js. Publicado en NPM con tipos incluidos.",
+  },
+  {
+    slug: "gitzen",
+    title: "gitzen",
+    category: "CLI / Developer Tool",
+    description: "Herramienta CLI con IA que analiza tus cambios de Git y genera mensajes de commit profesionales automáticamente. Soporta múltiples modelos de lenguaje y es completamente configurable.",
+    longDesc: "Gitzen conecta con la API de tu modelo LLM preferido, analiza el diff de tus cambios staged, comprende el contexto del repositorio y genera mensajes de commit siguiendo Conventional Commits o el estilo que prefieras. Funciona con OpenAI, Claude, Ollama y más.",
+    tags: ["AI", "CLI", "Git", "Rust", "LLM"],
+    github: "https://github.com/JorgeRosbel/gitzen",
+    live: null,
+    metrics: [
+      { label: "Tiempo por commit", value: "-90%" },
+      { label: "Modelos soportados", value: "5+" },
+      { label: "Idiomas", value: "Multi" },
+    ],
+    results: "Construido en Rust para máxima velocidad. Compatible con hooks de Git para integración automática en el workflow.",
+    featured: true,
+  },
+  {
+    slug: "novaboost",
+    title: "NovaBoost",
+    category: "Template / Starter Kit",
+    description: "Plantilla de blog con Astro 5 y Tailwind CSS 4, optimizada para Core Web Vitals, con structured data JSON-LD y generación de posts con IA integrada.",
+    longDesc: "NovaBoost nació de la frustración con los templates de blog existentes que sacrifican rendimiento por features. Esta template logra 100 en todos los campos de Lighthouse: Performance, Accessibility, Best Practices y SEO, sin comprometer la experiencia de desarrollo.",
+    tags: ["Astro", "Tailwind CSS", "SEO", "AI", "TypeScript"],
+    github: "https://github.com/JorgeRosbel/NovaBoost",
+    live: "https://novaboost.vercel.app",
+    metrics: [
+      { label: "Lighthouse Score", value: "100/100" },
+      { label: "LCP", value: "<0.8s" },
+      { label: "CLS", value: "0" },
+    ],
+    results: "Publicado como template gratuito. Usado como base por más de 50 proyectos. Featured en el ecosystem de Astro.",
+  },
+  {
+    slug: "geofisik-tool",
+    title: "Geofisik Tool",
+    category: "Aplicación Web / SaaS",
+    description: "Aplicación web especializada para el monitoreo de desplazamientos verticales en geofísica, con mapas interactivos, series temporales y exportación de datos científicos.",
+    longDesc: "Herramienta SaaS desarrollada para investigadores en geofísica. Permite importar datos de estaciones GPS, visualizarlos en mapas interactivos con Leaflet, generar gráficos de series temporales y exportar resultados en formatos estándar del sector (CSV, GeoJSON, NetCDF).",
+    tags: ["React", "Leaflet", "D3.js", "Python", "FastAPI"],
+    github: null,
+    live: "https://tool.geofisik.com",
+    metrics: [
+      { label: "Estaciones monitoreadas", value: "500+" },
+      { label: "Datasets procesados", value: "2TB+" },
+      { label: "Usuarios activos", value: "200+" },
+    ],
+    results: "Adoptado por grupos de investigación en tres universidades. Procesando datos de redes GPS nacionales en tiempo cuasi-real.",
+  },
+  {
+    slug: "astro-i18n",
+    title: "astro-i18n",
+    category: "Open Source / Librería",
+    description: "Librería de internacionalización minimalista para Astro con soporte completo de TypeScript, routing automático y zero overhead en producción.",
+    longDesc: "astro-i18n llena el hueco entre las soluciones de i18n demasiado complejas y las primitivas de Astro. Ofrece routing i18n automático, traducción con interpolación, detección de idioma, y generación de tipos TypeScript automática desde los archivos de traducción.",
+    tags: ["Astro", "TypeScript", "i18n", "NPM"],
+    github: "https://github.com/JorgeRosbel/astro-i18n",
+    live: null,
+    metrics: [
+      { label: "Bundle añadido", value: "~1.5kb" },
+      { label: "Idiomas soportados", value: "Ilimitado" },
+      { label: "Type safety", value: "100%" },
+    ],
+    results: "API completamente tipada con autocompletado de claves de traducción. Zero runtime overhead gracias a la generación en build time.",
+  },
+];
+---
+
+<BaseLayout
+  title="Proyectos — Mohamed Chennani"
+  description="Proyectos, case studies y trabajo open source de Mohamed Chennani, ingeniero full stack."
+>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero__inner fade-in">
+        <span class="tag">proyectos</span>
+        <h1 class="page-hero__title">Trabajo seleccionado</h1>
+        <p class="page-hero__desc">
+          Una selección de proyectos open source, herramientas para desarrolladores y aplicaciones
+          que he construido. Cada uno con su historia, decisiones técnicas y resultados.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects-section">
+    <div class="container">
+      <div class="projects-list">
+        {projects.map((project, i) => (
+          <article class={`case-card fade-in ${project.featured ? 'case-card--featured' : ''}`} style={`animation-delay:${i*0.08}s`}>
+            <div class="case-card__main">
+              <div class="case-card__header">
+                <div>
+                  <span class="case-card__category">{project.category}</span>
+                  <h2 class="case-card__title">{project.title}</h2>
+                </div>
+                <div class="case-card__links">
+                  {project.github && (
+                    <a href={project.github} target="_blank" rel="noopener" class="case-link" title="GitHub">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                      </svg>
+                      GitHub
+                    </a>
+                  )}
+                  {project.live && (
+                    <a href={project.live} target="_blank" rel="noopener" class="case-link case-link--primary">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                      </svg>
+                      Ver en vivo
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              <p class="case-card__desc">{project.description}</p>
+              <p class="case-card__long">{project.longDesc}</p>
+
+              <div class="case-card__tags">
+                {project.tags.map(tag => <span class="tag">{tag}</span>)}
+              </div>
+            </div>
+
+            <div class="case-card__aside">
+              <div class="metrics">
+                <span class="metrics__label">Resultados</span>
+                <div class="metrics__grid">
+                  {project.metrics.map(m => (
+                    <div class="metric">
+                      <span class="metric__value">{m.value}</span>
+                      <span class="metric__label">{m.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div class="case-result">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <p>{project.results}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="page-cta">
+    <div class="container">
+      <div class="page-cta__inner fade-in">
+        <h2>¿Tienes un proyecto en mente?</h2>
+        <p>Siempre estoy abierto a hablar sobre nuevos proyectos interesantes.</p>
+        <a href="/contacto" class="btn btn--primary">Contactar →</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: 120px;
+    padding-bottom: 3rem;
+    border-bottom: 0.5px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .page-hero__inner {
+    max-width: 640px;
+  }
+
+  .page-hero__title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0.75rem 0 1rem;
+  }
+
+  .page-hero__desc {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  .projects-section {
+    padding-bottom: 4rem;
+  }
+
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .case-card {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 2rem;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    transition: border-color var(--transition), box-shadow var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .case-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  .case-card:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .case-card:hover::before { opacity: 0.5; }
+
+  .case-card--featured {
+    border-color: rgba(14,165,233,0.15);
+  }
+
+  .case-card__category {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .case-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .case-card__title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-top: 4px;
+  }
+
+  .case-card__links {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .case-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border: 0.5px solid var(--border);
+    padding: 5px 10px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    transition: all var(--transition);
+  }
+
+  .case-link:hover {
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+  }
+
+  .case-link--primary {
+    color: var(--accent);
+    border-color: rgba(14,165,233,0.3);
+    background: var(--accent-glow);
+  }
+
+  .case-link--primary:hover {
+    background: rgba(14,165,233,0.2);
+    border-color: var(--accent);
+  }
+
+  .case-card__desc {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .case-card__long {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+
+  .case-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* Aside */
+  .case-card__aside {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    border-left: 0.5px solid var(--border);
+    padding-left: 2rem;
+  }
+
+  .metrics__label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .metrics__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .metric {}
+
+  .metric__value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .metric__label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .case-result {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 1rem;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    border: 0.5px solid var(--border);
+  }
+
+  .case-result svg {
+    color: #22c55e;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .case-result p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: var(--radius-md);
+    transition: all var(--transition);
+    cursor: pointer;
+    border: 0.5px solid transparent;
+  }
+
+  .btn--primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .btn--primary:hover {
+    background: var(--accent-muted);
+    transform: translateY(-1px);
+  }
+
+  .page-cta {
+    padding: 3rem 0 5rem;
+  }
+
+  .page-cta__inner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .page-cta__inner h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .page-cta__inner p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 900px) {
+    .case-card {
+      grid-template-columns: 1fr;
+    }
+    .case-card__aside {
+      border-left: none;
+      padding-left: 0;
+      border-top: 0.5px solid var(--border);
+      padding-top: 1.5rem;
+    }
+    .metrics__grid {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .case-card { padding: 1.5rem; }
+    .case-card__header { flex-direction: column; }
+  }
+</style>

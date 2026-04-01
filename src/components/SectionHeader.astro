@@ -1,0 +1,15 @@
+---
+interface Props { label: string; title: string; sub?: string; }
+const { label, title, sub } = Astro.props;
+---
+<div class="sh reveal">
+  <p class="label sh-lbl">{label}</p>
+  <h2 class="sh-title">{title}</h2>
+  {sub && <p class="sh-sub">{sub}</p>}
+</div>
+<style>
+.sh { margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+.sh-lbl { margin-bottom: 0.75rem; }
+.sh-title { font-size: clamp(1.7rem, 3.5vw, 2.5rem); letter-spacing: -0.02em; max-width: 600px; }
+.sh-sub { margin-top: 0.75rem; font-size: 1rem; color: var(--text-2); max-width: 520px; line-height: 1.7; }
+</style>

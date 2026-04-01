@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectPost from '../../components/ProjectPost.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import { ui, projects } from '../../i18n';
+const t = ui.es;
+const p = projects.es;
+---
+<BaseLayout title="Proyectos — Mohamed Chennani" lang="es" description="Proyectos y experiencia técnica de Mohamed Chennani — soporte IT, servidores Linux, streaming.">
+  <div style="padding-top:var(--nav-h)"></div>
+  <section class="section">
+    <div class="container">
+      <SectionHeader label={t.work.label} title={t.work.title} sub={t.work.sub} />
+      <div>
+        {p.map((proj, i) => (
+          <ProjectPost {...proj} index={i} readMore={t.work.readMore} liveLabel={t.work.live} githubLabel={t.work.github} />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
