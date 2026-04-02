@@ -17,19 +17,23 @@ export const socials = [
 
 export const skills = [
   { name: 'Linux',       pct: 85 },
-  { name: 'Networking',  pct: 80 },
-  { name: 'HTML / CSS',  pct: 78 },
+  { name: 'Networking',  pct: 60 },
+  { name: 'HTML / CSS',  pct: 85 },
+  { name: 'Node.js',   pct: 70 },
+  { name: 'PHP',   pct: 80 },
+  { name: 'Static Sites',   pct: 75 },
   { name: 'WordPress',   pct: 75 },
   { name: 'Cloudflare',  pct: 80 },
   { name: 'Streaming / IPTV', pct: 82 },
-  { name: 'Windows Server',   pct: 75 },
   { name: 'Coding',           pct: 60 },
+  { name: 'React',   pct: 50 },
+
 ];
 
 export const langs = [
-  { name_en: 'Spanish', name_es: 'Español', pct: 100 },
-  { name_en: 'English', name_es: 'Inglés',  pct: 75  },
-  { name_en: 'French',  name_es: 'Francés', pct: 65  },
+  { name_en: 'Spanish', name_es: 'Español', pct: 60 },
+  { name_en: 'English', name_es: 'Inglés',  pct: 70  },
+  { name_en: 'French',  name_es: 'Francés', pct: 50  },
   { name_en: 'Arabic',  name_es: 'Árabe',   pct: 100 },
 ];
 
