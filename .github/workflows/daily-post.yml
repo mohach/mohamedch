@@ -26,10 +26,22 @@ jobs:
         run: node generate-post.mjs
 
       - name: Commit and push
+        id: push
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add src/content/blog/
-          git diff --cached --quiet && echo "Nothing new, skipping." && exit 0
-          git commit -m "post: auto $(date +%Y-%m-%d)"
-          git push
+          if git diff --cached --quiet; then
+            echo "Nothing new, skipping."
+            echo "pushed=false" >> $GITHUB_OUTPUT
+          else
+            git commit -m "post: auto $(date +%Y-%m-%d)"
+            git push
+            echo "pushed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Trigger Vercel rebuild
+        if: steps.push.outputs.pushed == 'true'
+        run: |
+          curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
+          echo "Vercel rebuild triggered."
