@@ -1,185 +1,78 @@
 ---
-import Base from '../../layouts/Base.astro';
-import Nav from '../../components/Nav.astro';
-import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import { ui } from '../../i18n';
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf()
-);
+const t = ui.es;
 
-function formatFecha(fecha: Date): string {
-  return fecha.toLocaleDateString('es-ES', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-  });
+// Read all ES blog posts from src/content/blog
+// Files follow pattern: YYYY-MM-DD-slug-es.md
+let posts: Array<{ title: string; excerpt: string; date: string; slug: string; tags: string[]; readTime: string }> = [];
+
+try {
+  const files = await Astro.glob('../../content/blog/*-es.md');
+  posts = files
+    .map((f: any) => ({
+      title:    f.frontmatter.title    ?? 'Sin título',
+      excerpt:  f.frontmatter.excerpt  ?? '',
+      date:     f.frontmatter.date     ?? '',
+      slug:     f.frontmatter.slug     ?? '',
+      tags:     f.frontmatter.tags     ?? [],
+      readTime: '5 min de lectura',
+    }))
+    .sort((a, b) => b.date.localeCompare(a.date));
+} catch(e) {
+  posts = [];
 }
-
-// Etiquetas únicas para el filtro
-const etiquetas = [...new Set(posts.map((p) => p.data.etiqueta))];
 ---
 
-<Base
-  titulo="Blog — Mohamed Chennani"
-  descripcion="Artículos sobre rendimiento web, TypeScript, Astro y desarrollo de software."
->
-  <main class="container">
-    <Nav paginaActual="blog" />
+<BaseLayout title="Blog — Mohamed Chennani" lang="es"
+  description="Artículos técnicos sobre Linux, redes, Cloudflare, streaming y administración web.">
 
-    <div class="cabecera">
-      <h1>Blog</h1>
-      <p>Notas sobre rendimiento web, TypeScript, open source y lo que estoy aprendiendo.</p>
+  <div style="padding-top:var(--nav-h)"></div>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader label={t.blog.label} title={t.blog.title} sub={t.blog.sub} />
+
+      {posts.length === 0 ? (
+        <div class="empty reveal">
+          <p>{t.blog.noPost}</p>
+        </div>
+      ) : (
+        <div class="blist">
+          {posts.map((p, i) => (
+            <a href={`/blog/${p.slug}`} class="brow reveal" style={`transition-delay:${i*0.06}s`}>
+              <div class="brow-meta">
+                <time class="label">{p.date}</time>
+                <span class="label brow-rt">{p.readTime}</span>
+              </div>
+              <h3 class="brow-title">{p.title}</h3>
+              <p class="brow-exc">{p.excerpt}</p>
+              <div class="brow-foot">
+                <div class="brow-tags">{p.tags.map((tag: string) => <span class="tag">{tag}</span>)}</div>
+                <span class="brow-arr">→</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
     </div>
+  </section>
 
-    <div class="etiquetas">
-      <span class="etiqueta-filtro activo" data-filtro="todos">todos</span>
-      {etiquetas.map((e) => (
-        <span class="etiqueta-filtro" data-filtro={e}>{e}</span>
-      ))}
-    </div>
-
-    <div class="lista-posts" id="lista-posts">
-      {
-        posts.map((post) => (
-          <a href={`/blog/${post.slug}`} class="post-item" data-etiqueta={post.data.etiqueta}>
-            <div class="post-meta">
-              <span class="post-fecha">{formatFecha(post.data.fecha)}</span>
-              <span class="post-etiqueta">{post.data.etiqueta}</span>
-            </div>
-            <div class="post-titulo">{post.data.titulo}</div>
-            <div class="post-desc">{post.data.descripcion}</div>
-          </a>
-        ))
-      }
-    </div>
-  </main>
-</Base>
-
-<script>
-  const filtros = document.querySelectorAll<HTMLElement>('.etiqueta-filtro');
-  const posts = document.querySelectorAll<HTMLElement>('.post-item');
-
-  filtros.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      filtros.forEach((b) => b.classList.remove('activo'));
-      btn.classList.add('activo');
-
-      const filtro = btn.dataset.filtro;
-      posts.forEach((post) => {
-        if (filtro === 'todos' || post.dataset.etiqueta === filtro) {
-          post.style.display = 'block';
-        } else {
-          post.style.display = 'none';
-        }
-      });
-    });
-  });
-</script>
+</BaseLayout>
 
 <style>
-  .container {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem 6rem;
-  }
-
-  .cabecera {
-    margin-bottom: 2.5rem;
-  }
-
-  .cabecera h1 {
-    font-family: var(--serif);
-    font-size: clamp(1.8rem, 5vw, 2.4rem);
-    font-weight: 400;
-    line-height: 1.2;
-    margin-bottom: 0.6rem;
-  }
-
-  .cabecera p {
-    color: var(--color-muted);
-    font-size: 15px;
-    line-height: 1.65;
-  }
-
-  .etiquetas {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-
-  .etiqueta-filtro {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 4px;
-    border: 0.5px solid var(--color-line);
-    color: var(--color-muted);
-    cursor: pointer;
-    transition: all 0.15s;
-    user-select: none;
-  }
-
-  .etiqueta-filtro:hover {
-    border-color: var(--color-text);
-    color: var(--color-text);
-  }
-
-  .etiqueta-filtro.activo {
-    background: var(--color-text);
-    color: var(--color-bg);
-    border-color: var(--color-text);
-  }
-
-  .post-item {
-    display: block;
-    padding: 1.1rem 0;
-    border-bottom: 0.5px solid var(--color-line);
-    text-decoration: none;
-  }
-
-  .post-item:last-child {
-    border-bottom: none;
-  }
-
-  .post-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .post-fecha {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--color-subtle);
-  }
-
-  .post-etiqueta {
-    font-family: var(--mono);
-    font-size: 10px;
-    padding: 2px 7px;
-    border-radius: 3px;
-    background: var(--color-surface);
-    border: 0.5px solid var(--color-line);
-    color: var(--color-muted);
-  }
-
-  .post-titulo {
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 0.35rem;
-    line-height: 1.4;
-  }
-
-  .post-item:hover .post-titulo {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  .post-desc {
-    font-size: 13px;
-    color: var(--color-muted);
-    line-height: 1.55;
-  }
+.empty { padding: 3rem 0; color: var(--text-2); font-size: 1rem; }
+.blist { border-top: 1px solid var(--border); }
+.brow { display:flex; flex-direction:column; gap:0.65rem; padding:1.75rem 0; border-bottom:1px solid var(--border); color:inherit; }
+.brow-meta { display:flex; align-items:center; gap:1rem; }
+.brow-rt::before { content:'·'; margin-right:1rem; }
+.brow-title { font-family:var(--font-serif); font-size:clamp(1.05rem,1.8vw,1.3rem); font-weight:400; color:var(--text); transition:opacity 0.15s; }
+.brow:hover .brow-title { opacity:0.6; }
+.brow-exc { font-size:0.875rem; color:var(--text-2); line-height:1.65; }
+.brow-foot { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:0.25rem; }
+.brow-tags { display:flex; flex-wrap:wrap; gap:5px; }
+.brow-arr { color:var(--text-3); font-size:1rem; transition:transform 0.2s, color 0.15s; flex-shrink:0; }
+.brow:hover .brow-arr { transform:translateX(5px); color:var(--text); }
 </style>

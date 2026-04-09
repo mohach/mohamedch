@@ -1,0 +1,35 @@
+name: Auto Blog Post (DeepSeek)
+
+on:
+  schedule:
+    - cron: '0 8 */2 * *'    # every 2 days at 8:00 UTC
+  workflow_dispatch:           # manual trigger from GitHub UI
+
+jobs:
+  generate-post:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate bilingual post
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: node generate-post.mjs
+
+      - name: Commit and push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/content/blog/
+          git diff --cached --quiet && echo "Nothing new, skipping." && exit 0
+          git commit -m "post: auto $(date +%Y-%m-%d)"
+          git push

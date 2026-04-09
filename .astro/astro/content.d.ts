@@ -140,37 +140,19 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"blog": {
-"astro-islands-lcp.md": {
-	id: "astro-islands-lcp.md";
-  slug: "astro-islands-lcp";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
-"contribuir-open-source.md": {
-	id: "contribuir-open-source.md";
-  slug: "contribuir-open-source";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
-"typescript-tipos-avanzados.md": {
-	id: "typescript-tipos-avanzados.md";
-  slug: "typescript-tipos-avanzados";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
-};
-
+		
 	};
 
 	type DataEntryMap = {
-		
+		"blog": Record<string, {
+  id: string;
+  collection: "blog";
+  data: any;
+}>;
+
 	};
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("../../src/content/config.js");
+	export type ContentConfig = never;
 }

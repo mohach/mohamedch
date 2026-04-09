@@ -4,27 +4,24 @@ import ProjectPost from '../components/ProjectPost.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import { ui, projects, skills, langs, certs, personal } from '../i18n';
 
-const t = ui.en;
-const p = projects.en;
+const t = ui.es;
+const p = projects.es;
 ---
 
-<BaseLayout title="Mohamed Chennani — IT Technician & Systems Specialist" lang="en"
-  description="IT Technician with 10+ years experience in Linux, networking, WordPress, Cloudflare and streaming/IPTV. Based in Alaquas, Valencia.">
+<BaseLayout title="Mohamed Chennani — Técnico Informático" lang="es"
+  description="Técnico de Informática con más de 10 años de experiencia en Linux, redes, WordPress, Cloudflare y streaming/IPTV. Alaquas, Valencia.">
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-grid" aria-hidden="true"></div>
     <div class="container hero-inner">
-
       <p class="hero-avail anim-up" style="animation-delay:0s">
         <span class="avail-dot"></span>
         <span class="label">{t.hero.available}</span>
       </p>
-
       <h1 class="hero-name anim-up" style="animation-delay:0.08s">
         {t.hero.title1}<br/><em>{t.hero.title2}</em>
       </h1>
-
       <div class="hero-right">
         <p class="hero-role anim-up" style="animation-delay:0.12s">{t.hero.role}</p>
         <p class="hero-desc anim-up" style="animation-delay:0.17s" set:html={t.hero.desc}></p>
@@ -33,16 +30,15 @@ const p = projects.en;
           <a href="/contact" class="btn btn-ghost">{t.hero.cta2}</a>
         </div>
         <div class="hero-chips anim-up" style="animation-delay:0.27s">
-          {['Linux','Networking','WordPress','Cloudflare','Streaming','IPTV'].map(s => (
+          {['Linux','Redes','WordPress','Cloudflare','Streaming','IPTV'].map(s => (
             <span class="chip">{s}</span>
           ))}
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- SOBRE MÍ -->
   <section class="section" id="about">
     <div class="container about-grid">
       <div><SectionHeader label={t.about.label} title={t.about.title} /></div>
@@ -57,13 +53,12 @@ const p = projects.en;
             </div>
           ))}
         </div>
-        <!-- Languages -->
         <div class="lng-block reveal" style="transition-delay:0.22s">
-          <p class="label lng-lbl">Languages</p>
+          <p class="label lng-lbl">Idiomas</p>
           <div class="lng-list">
             {langs.map(l => (
               <div class="lng-row">
-                <span class="lng-name">{l.name_en}</span>
+                <span class="lng-name">{l.name_es}</span>
                 <div class="lng-track"><div class="lng-fill" style={`--w:${l.pct}%`}></div></div>
               </div>
             ))}
@@ -73,7 +68,7 @@ const p = projects.en;
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
+  <!-- EXPERIENCIA -->
   <section class="section" id="experience">
     <div class="container">
       <SectionHeader label={t.exp.label} title={t.exp.title} />
@@ -98,19 +93,13 @@ const p = projects.en;
     </div>
   </section>
 
-  <!-- PROJECTS (blog-post style, 4 max on home) -->
+  <!-- PROYECTOS -->
   <section class="section" id="work">
     <div class="container">
       <SectionHeader label={t.work.label} title={t.work.title} sub={t.work.sub} />
-      <div class="proj-list">
-        {p.slice(0, 4).map((proj, i) => (
-          <ProjectPost
-            {...proj}
-            index={i}
-            readMore={t.work.readMore}
-            liveLabel={t.work.live}
-            githubLabel={t.work.github}
-          />
+      <div>
+        {p.slice(0,4).map((proj, i) => (
+          <ProjectPost {...proj} index={i} readMore={t.work.readMore} liveLabel={t.work.live} githubLabel={t.work.github} />
         ))}
       </div>
       <div class="see-more reveal">
@@ -124,7 +113,7 @@ const p = projects.en;
     </div>
   </section>
 
-  <!-- SKILLS -->
+  <!-- COMPETENCIAS -->
   <section class="section" id="skills">
     <div class="container">
       <SectionHeader label={t.skills.label} title={t.skills.title} />
@@ -144,10 +133,10 @@ const p = projects.en;
     </div>
   </section>
 
-  <!-- CERTIFICATIONS -->
+  <!-- CERTIFICACIONES -->
   <section class="section">
     <div class="container">
-      <SectionHeader label={t.certs.label} title="Certifications" />
+      <SectionHeader label={t.certs.label} title="Certificaciones" />
       <div class="cert-list">
         {certs.map((c, i) => (
           <div class="cert-row reveal" style={`transition-delay:${i*0.07}s`}>
@@ -162,10 +151,10 @@ const p = projects.en;
     </div>
   </section>
 
-  <!-- EDUCATION -->
+  <!-- EDUCACIÓN -->
   <section class="section">
     <div class="container">
-      <SectionHeader label={t.edu.label} title="Education & Training" />
+      <SectionHeader label={t.edu.label} title="Educación y formación" />
       <div class="edu-list">
         {t.edu.items.map((e, i) => (
           <div class="edu-row reveal" style={`transition-delay:${i*0.08}s`}>
@@ -204,138 +193,71 @@ const p = projects.en;
 </BaseLayout>
 
 <style>
-/* HERO */
-.hero {
-  position: relative;
-  padding-top: calc(var(--nav-h) + clamp(3.5rem, 8vw, 6rem));
-  padding-bottom: clamp(4rem, 9vw, 8rem);
-  overflow: hidden;
-}
-.hero-grid {
-  position: absolute; inset: 0; pointer-events: none;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 52px 52px;
-  opacity: 0.5;
-  mask-image: radial-gradient(ellipse 60% 70% at 78% 45%, transparent 30%, black 100%);
-}
-.hero-inner {
-  position: relative; z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 0 3rem;
-  align-items: end;
-}
-.hero-avail {
-  grid-column: 1 / -1;
-  display: inline-flex; align-items: center; gap: 8px;
-  width: fit-content; margin-bottom: 1.5rem;
-}
-.avail-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--green-dot);
-  animation: pulse 2.5s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%,100% { transform:scale(1); opacity:1; }
-  50%      { transform:scale(0.75); opacity:0.5; }
-}
-.hero-name {
-  font-size: clamp(3rem, 7.5vw, 5.5rem);
-  letter-spacing: -0.03em; line-height: 1.05;
-}
-.hero-name em { color: var(--text-2); }
-.hero-right { display: flex; flex-direction: column; gap: 1.25rem; padding-bottom: 0.5rem; }
-.hero-role { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-3); letter-spacing: 0.06em; text-transform: uppercase; }
-.hero-desc { font-size: 1rem; color: var(--text-2); line-height: 1.75; }
-.hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-.hero-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip {
-  font-family: var(--font-mono); font-size: 0.68rem;
-  padding: 4px 9px; border-radius: var(--r-xs);
-  border: 1px solid var(--border); background: var(--bg-alt); color: var(--text-2);
-}
-
-/* ABOUT */
-.about-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 4rem; align-items: start; }
-.about-p { font-size: 1rem; color: var(--text-2); margin-bottom: 1rem; }
-.stats { display: flex; gap: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); margin-top: 2rem; flex-wrap: wrap; }
-.stat-n { display: block; font-family: var(--font-serif); font-size: 2.2rem; color: var(--text); line-height: 1; letter-spacing: -0.02em; }
-.stat-l { display: block; margin-top: 4px; }
-
-/* Languages */
-.lng-block { margin-top: 2rem; }
-.lng-lbl { margin-bottom: 1rem; }
-.lng-list { display: flex; flex-direction: column; gap: 0.75rem; }
-.lng-row { display: flex; align-items: center; gap: 1rem; }
-.lng-name { font-size: 0.875rem; font-weight: 500; color: var(--text); min-width: 80px; }
-.lng-track { flex: 1; height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; }
-.lng-fill { height: 100%; width: var(--w); background: var(--text); border-radius: 2px; transform-origin: left; animation: grow 0.8s var(--ease) both; }
-@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-
-/* EXPERIENCE */
-.exp-list { border-top: 1px solid var(--border); }
-.exp-row { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); }
-.exp-left { display: flex; flex-direction: column; gap: 4px; padding-top: 3px; }
-.exp-loc { margin-top: 2px; }
-.exp-head { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
-.exp-role { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; letter-spacing: -0.01em; color: var(--text); }
-.exp-co { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-3); }
-.badge-now {
-  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.07em;
-  padding: 2px 7px; border-radius: 100px;
-  background: var(--green-bg); color: var(--green); border: 1px solid var(--green-bd);
-}
-.exp-desc { font-size: 0.875rem; color: var(--text-2); line-height: 1.65; }
-
-/* PROJECTS */
-.proj-list { }
-.see-more { margin-top: 2rem; }
-
-/* SKILLS */
-.skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 3.5rem; }
-.skill-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
-.skill-name { font-size: 0.875rem; font-weight: 500; color: var(--text); }
-.skill-track { height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; }
-.skill-fill { height: 100%; width: var(--w); background: var(--text); border-radius: 2px; transform-origin: left; animation: grow 0.9s var(--ease) both; }
-
-/* CERTS */
-.cert-list { border-top: 1px solid var(--border); }
-.cert-row { display: flex; align-items: flex-start; gap: 2rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
-.cert-year { min-width: 48px; flex-shrink: 0; padding-top: 3px; }
-.cert-title { font-size: 0.95rem; font-weight: 500; color: var(--text); margin-bottom: 3px; }
-.cert-org { font-size: 0.825rem; color: var(--text-3); font-family: var(--font-mono); }
-
-/* EDUCATION */
-.edu-list { border-top: 1px solid var(--border); }
-.edu-row { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; padding: 1.75rem 0; border-bottom: 1px solid var(--border); }
-.edu-left { display: flex; flex-direction: column; gap: 4px; padding-top: 3px; }
-.edu-loc { margin-top: 2px; }
-.edu-title { font-size: 0.95rem; font-weight: 500; color: var(--text); margin-bottom: 3px; }
-.edu-org { font-size: 0.825rem; color: var(--text-2); margin-bottom: 3px; }
-.edu-note { margin-top: 4px; }
-
-/* CTA */
-.cta {
-  background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--r-xl);
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem);
-  display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap;
-}
-.cta-title { font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: -0.02em; max-width: 480px; }
-.cta-sub { margin-top: 0.75rem; font-size: 0.9rem; color: var(--text-2); max-width: 400px; line-height: 1.65; }
-.cta-actions { display: flex; gap: 10px; flex-wrap: wrap; flex-shrink: 0; }
-
-/* RESPONSIVE */
-@media (max-width: 860px) {
-  .hero-inner   { grid-template-columns: 1fr; }
-  .hero-name    { grid-column: 1; }
-  .about-grid   { grid-template-columns: 1fr; gap: 2rem; }
-  .exp-row      { grid-template-columns: 1fr; gap: 0.35rem; }
-  .edu-row      { grid-template-columns: 1fr; gap: 0.35rem; }
-  .skills-grid  { grid-template-columns: 1fr; gap: 1.25rem; }
-  .cta          { flex-direction: column; align-items: flex-start; gap: 2rem; }
-  .cert-row     { gap: 1rem; }
+.hero{position:relative;padding-top:calc(var(--nav-h) + clamp(3.5rem,8vw,6rem));padding-bottom:clamp(4rem,9vw,8rem);overflow:hidden;}
+.hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:52px 52px;opacity:0.5;mask-image:radial-gradient(ellipse 60% 70% at 78% 45%,transparent 30%,black 100%);}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:0 3rem;align-items:end;}
+.hero-avail{grid-column:1/-1;display:inline-flex;align-items:center;gap:8px;width:fit-content;margin-bottom:1.5rem;}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:var(--green-dot);animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(0.75);opacity:0.5;}}
+.hero-name{font-size:clamp(3rem,7.5vw,5.5rem);letter-spacing:-0.03em;line-height:1.05;}
+.hero-name em{color:var(--text-2);}
+.hero-right{display:flex;flex-direction:column;gap:1.25rem;padding-bottom:0.5rem;}
+.hero-role{font-family:var(--font-mono);font-size:0.8rem;color:var(--text-3);letter-spacing:0.06em;text-transform:uppercase;}
+.hero-desc{font-size:1rem;color:var(--text-2);line-height:1.75;}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-family:var(--font-mono);font-size:0.68rem;padding:4px 9px;border-radius:var(--r-xs);border:1px solid var(--border);background:var(--bg-alt);color:var(--text-2);}
+.about-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:4rem;align-items:start;}
+.about-p{font-size:1rem;color:var(--text-2);margin-bottom:1rem;}
+.stats{display:flex;gap:2.5rem;padding-top:2rem;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;}
+.stat-n{display:block;font-family:var(--font-serif);font-size:2.2rem;color:var(--text);line-height:1;letter-spacing:-0.02em;}
+.stat-l{display:block;margin-top:4px;}
+.lng-block{margin-top:2rem;}
+.lng-lbl{margin-bottom:1rem;}
+.lng-list{display:flex;flex-direction:column;gap:0.75rem;}
+.lng-row{display:flex;align-items:center;gap:1rem;}
+.lng-name{font-size:0.875rem;font-weight:500;color:var(--text);min-width:80px;}
+.lng-track{flex:1;height:2px;background:var(--border);border-radius:2px;overflow:hidden;}
+.lng-fill{height:100%;width:var(--w);background:var(--text);border-radius:2px;transform-origin:left;animation:grow 0.8s var(--ease) both;}
+@keyframes grow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+.exp-list{border-top:1px solid var(--border);}
+.exp-row{display:grid;grid-template-columns:200px 1fr;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--border);}
+.exp-left{display:flex;flex-direction:column;gap:4px;padding-top:3px;}
+.exp-loc{margin-top:2px;}
+.exp-head{display:flex;align-items:baseline;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.5rem;}
+.exp-role{font-family:var(--font-sans);font-size:0.95rem;font-weight:500;letter-spacing:-0.01em;color:var(--text);}
+.exp-co{font-family:var(--font-mono);font-size:0.75rem;color:var(--text-3);}
+.badge-now{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.07em;padding:2px 7px;border-radius:100px;background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd);}
+.exp-desc{font-size:0.875rem;color:var(--text-2);line-height:1.65;}
+.see-more{margin-top:2rem;}
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem 3.5rem;}
+.skill-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
+.skill-name{font-size:0.875rem;font-weight:500;color:var(--text);}
+.skill-track{height:2px;background:var(--border);border-radius:2px;overflow:hidden;}
+.skill-fill{height:100%;width:var(--w);background:var(--text);border-radius:2px;transform-origin:left;animation:grow 0.9s var(--ease) both;}
+.cert-list{border-top:1px solid var(--border);}
+.cert-row{display:flex;align-items:flex-start;gap:2rem;padding:1.5rem 0;border-bottom:1px solid var(--border);}
+.cert-year{min-width:48px;flex-shrink:0;padding-top:3px;}
+.cert-title{font-size:0.95rem;font-weight:500;color:var(--text);margin-bottom:3px;}
+.cert-org{font-size:0.825rem;color:var(--text-3);font-family:var(--font-mono);}
+.edu-list{border-top:1px solid var(--border);}
+.edu-row{display:grid;grid-template-columns:200px 1fr;gap:2rem;padding:1.75rem 0;border-bottom:1px solid var(--border);}
+.edu-left{display:flex;flex-direction:column;gap:4px;padding-top:3px;}
+.edu-loc{margin-top:2px;}
+.edu-title{font-size:0.95rem;font-weight:500;color:var(--text);margin-bottom:3px;}
+.edu-org{font-size:0.825rem;color:var(--text-2);margin-bottom:3px;}
+.edu-note{margin-top:4px;}
+.cta{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r-xl);padding:clamp(2.5rem,5vw,4rem) clamp(2rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap;}
+.cta-title{font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-0.02em;max-width:480px;}
+.cta-sub{margin-top:0.75rem;font-size:0.9rem;color:var(--text-2);max-width:400px;line-height:1.65;}
+.cta-actions{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0;}
+@media(max-width:860px){
+  .hero-inner{grid-template-columns:1fr;}.hero-name{grid-column:1;}
+  .about-grid{grid-template-columns:1fr;gap:2rem;}
+  .exp-row{grid-template-columns:1fr;gap:0.35rem;}
+  .edu-row{grid-template-columns:1fr;gap:0.35rem;}
+  .skills-grid{grid-template-columns:1fr;gap:1.25rem;}
+  .cta{flex-direction:column;align-items:flex-start;gap:2rem;}
+  .cert-row{gap:1rem;}
 }
 </style>

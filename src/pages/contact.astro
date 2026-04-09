@@ -2,135 +2,74 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import { ui, personal } from '../i18n';
-const t = ui.en.contact;
+const t = ui.es.contact;
 ---
-<BaseLayout title="Contact — Mohamed Chennani" lang="en" description="Get in touch with Mohamed Chennani for IT support, server admin, WordPress, Cloudflare, or streaming projects.">
+<BaseLayout title="Contacto — Mohamed Chennani" lang="es">
   <div style="padding-top:var(--nav-h)"></div>
   <section class="section">
     <div class="container cw">
 
       <div class="c-left">
         <SectionHeader label={t.label} title={t.title} sub={t.sub} />
-
         <div class="avail-card reveal">
           <div class="avail-head">
             <span class="avail-dot"></span>
             <span class="avail-status">{t.avail}</span>
           </div>
           <dl class="avail-dl">
-            {[
-              { k:'Location',     v: t.loc     },
-              { k:'Timezone',     v: t.tz      },
-              { k:'Availability', v: t.avail_h },
-              { k:'Response',     v: t.resp    },
-            ].map(r => (
-              <div class="avail-row">
-                <dt class="label">{r.k}</dt>
-                <dd class="avail-val">{r.v}</dd>
-              </div>
-            ))}
+            <div class="avail-row"><dt class="label">Ubicación</dt><dd class="avail-val">{t.loc}</dd></div>
+            <div class="avail-row"><dt class="label">Zona horaria</dt><dd class="avail-val">{t.tz}</dd></div>
+            <div class="avail-row"><dt class="label">Respuesta</dt><dd class="avail-val">{t.resp}</dd></div>
+            <div class="avail-row"><dt class="label">Teléfono</dt><dd class="avail-val"><a href={`tel:${personal.phone}`} class="avail-link">{personal.phone}</a></dd></div>
+            <div class="avail-row"><dt class="label">Email</dt><dd class="avail-val"><a href={`mailto:${personal.email}`} class="avail-link">{personal.email}</a></dd></div>
           </dl>
         </div>
-
         <div class="socials reveal" style="transition-delay:0.1s">
           <p class="label s-lbl">{t.findMe}</p>
           <div class="s-list">
             <a href={`mailto:${personal.email}`} class="s-row">
-              <span class="s-icon">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-                  <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                </svg>
-              </span>
-              <span class="s-info">
-                <span class="s-name">Email</span>
-                <span class="s-handle">{personal.email}</span>
-              </span>
-              <svg class="s-arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-              </svg>
+              <span class="s-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+              <span class="s-info"><span class="s-name">Email</span><span class="s-handle">{personal.email}</span></span>
+              <svg class="s-arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
             </a>
-            <a href={`tel:${personal.phone}`} class="s-row">
-              <span class="s-icon">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.43 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/>
-                </svg>
-              </span>
-              <span class="s-info">
-                <span class="s-name">Phone</span>
-                <span class="s-handle">{personal.phone}</span>
-              </span>
-              <svg class="s-arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-              </svg>
+            <a href="https://github.com/mohach" target="_blank" rel="noopener" class="s-row">
+              <span class="s-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+              <span class="s-info"><span class="s-name">GitHub</span><span class="s-handle">@mohach</span></span>
+              <svg class="s-arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
             </a>
-            <a href="https://github.com/mohamedch" target="_blank" rel="noopener" class="s-row">
-              <span class="s-icon">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-              </span>
-              <span class="s-info">
-                <span class="s-name">GitHub</span>
-                <span class="s-handle">@mohamedch</span>
-              </span>
-              <svg class="s-arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-              </svg>
+            <a href="https://linkedin.com/in/mohach" target="_blank" rel="noopener" class="s-row">
+              <span class="s-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+              <span class="s-info"><span class="s-name">LinkedIn</span><span class="s-handle">mohach</span></span>
+              <svg class="s-arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
             </a>
           </div>
         </div>
       </div>
 
       <div class="c-right">
-        <form class="cform reveal" id="cform">
-          <div class="crow">
-            <div class="field">
-              <label class="label" for="name">{t.fieldName}</label>
-              <input class="finput" type="text" id="name" name="name" placeholder={t.phName} required />
-            </div>
-            <div class="field">
-              <label class="label" for="email">{t.fieldEmail}</label>
-              <input class="finput" type="email" id="email" name="email" placeholder={t.phEmail} required />
-            </div>
+        <div class="map-wrap reveal">
+          <p class="label map-label">{t.mapTitle}</p>
+          <div class="map-frame">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.4940%2C39.4387%2C-0.4340%2C39.4787&layer=mapnik&marker=39.4587%2C-0.4640"
+              width="100%" height="320" frameborder="0" scrolling="no" loading="lazy"
+              title="Alaquas, Valencia"
+            ></iframe>
           </div>
-          <div class="field">
-            <label class="label" for="type">{t.fieldType}</label>
-            <div class="sel-wrap">
-              <select class="finput" id="type" name="type">
-                <option value="">{t.phMsg.split('…')[0]}…</option>
-                {t.types.map(opt => <option value={opt}>{opt}</option>)}
-              </select>
-              <svg class="sel-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="field">
-            <label class="label" for="msg">{t.fieldMsg}</label>
-            <textarea class="finput ftxt" id="msg" name="msg" rows="5" placeholder={t.phMsg} required></textarea>
-          </div>
-          <div class="cfoot">
-            <button type="submit" class="btn btn-primary" id="sbtn">
-              {t.send}
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-              </svg>
-            </button>
-            <p class="label">{t.orEmail} <a href={`mailto:${personal.email}`} class="mail-link">{personal.email}</a></p>
-          </div>
-          <div class="success" id="success">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-            {t.sent}
-          </div>
-        </form>
-
-        <div class="faq reveal" style="transition-delay:0.1s">
-          <p class="label faq-lbl">{t.faq.label}</p>
-          <div class="faq-list">
-            {t.faq.items.map(item => (
-              <details class="faq-item">
-                <summary class="faq-q">{item.q}</summary>
-                <p class="faq-a">{item.a}</p>
-              </details>
-            ))}
+          <a href="https://www.openstreetmap.org/?mlat=39.4587&mlon=-0.4640#map=14/39.4587/-0.4640"
+            target="_blank" rel="noopener" class="map-link label">Ver mapa más grande →</a>
+        </div>
+        <div class="write-me reveal" style="transition-delay:0.1s">
+          <p class="wm-desc">¿Tienes un proyecto o necesitas ayuda técnica? Escríbeme directamente:</p>
+          <div class="wm-btns">
+            <a href={`mailto:${personal.email}?subject=Consulta desde mohamedch.com`} class="btn btn-primary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Enviar email
+            </a>
+            <a href={`tel:${personal.phone}`} class="btn btn-ghost">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.43 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+              {personal.phone}
+            </a>
           </div>
         </div>
       </div>
@@ -140,77 +79,38 @@ const t = ui.en.contact;
 </BaseLayout>
 
 <style>
-.cw { display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: start; }
-
-.avail-card { margin-top: 2rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1.5rem; }
-.avail-head { display: flex; align-items: center; gap: 8px; margin-bottom: 1.25rem; }
-.avail-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-dot); animation: pulse 2.5s ease-in-out infinite; }
-@keyframes pulse { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(0.75);opacity:0.5;} }
-.avail-status { font-size: 0.875rem; font-weight: 500; color: var(--green); }
-.avail-dl { display: flex; flex-direction: column; }
-.avail-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
-.avail-row:last-child { border-bottom: none; }
-.avail-val { font-size: 0.875rem; color: var(--text); }
-
-.socials { margin-top: 1.5rem; }
-.s-lbl { margin-bottom: 0.75rem; }
-.s-list { border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
-.s-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); color: inherit; transition: background 0.15s; }
-.s-row:last-child { border-bottom: none; }
-.s-row:hover { background: var(--bg-alt); }
-.s-icon { width: 32px; height: 32px; border-radius: var(--r-sm); border: 1px solid var(--border); background: var(--bg-card); display: flex; align-items: center; justify-content: center; color: var(--text-2); flex-shrink: 0; }
-.s-name { display: block; font-size: 0.875rem; font-weight: 500; color: var(--text); }
-.s-handle { display: block; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-3); }
-.s-arr { margin-left: auto; color: var(--text-3); transition: transform 0.2s, color 0.15s; flex-shrink: 0; }
-.s-row:hover .s-arr { transform: translate(2px,-2px); color: var(--text); }
-
-.cform { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 1.5rem; }
-.crow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.field { display: flex; flex-direction: column; gap: 6px; }
-.finput { background: var(--bg); border: 1px solid var(--border-mid); border-radius: var(--r-md); color: var(--text); font-family: var(--font-sans); font-size: 0.9rem; padding: 10px 13px; width: 100%; outline: none; transition: border-color 0.15s, box-shadow 0.15s; appearance: none; -webkit-appearance: none; }
-.finput::placeholder { color: var(--text-3); }
-.finput:focus { border-color: var(--border-mid); box-shadow: 0 0 0 3px rgba(17,17,16,0.07); }
-[data-theme="dark"] .finput:focus { box-shadow: 0 0 0 3px rgba(240,239,233,0.07); }
-.ftxt { resize: vertical; min-height: 120px; line-height: 1.65; }
-.sel-wrap { position: relative; }
-.sel-chev { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--text-3); pointer-events: none; }
-.cfoot { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.mail-link { color: var(--text-2); transition: color 0.15s; }
-.mail-link:hover { color: var(--text); }
-.success { display: none; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--green); background: var(--green-bg); border: 1px solid var(--green-bd); border-radius: var(--r-md); padding: 10px 14px; }
-.success.show { display: flex; }
-
-.faq-lbl { margin-bottom: 0.75rem; }
-.faq-list { border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
-.faq-item { border-bottom: 1px solid var(--border); }
-.faq-item:last-child { border-bottom: none; }
-.faq-q { list-style: none; padding: 13px 16px; font-size: 0.875rem; font-weight: 500; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; transition: background 0.15s; user-select: none; }
-.faq-q::-webkit-details-marker { display: none; }
-.faq-q::after { content:'+'; color:var(--text-3); font-weight:300; font-size:1.1rem; transition:transform 0.2s; flex-shrink:0; }
-.faq-item[open] .faq-q::after { transform: rotate(45deg); }
-.faq-q:hover { background: var(--bg-alt); }
-.faq-a { padding: 0 16px 13px; font-size: 0.84rem; color: var(--text-2); line-height: 1.65; }
-
-@media (max-width: 860px) {
-  .cw { grid-template-columns: 1fr; gap: 3rem; }
-  .crow { grid-template-columns: 1fr; }
-  .cfoot { flex-direction: column; align-items: flex-start; }
-}
+.cw{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:start;}
+.avail-card{margin-top:2rem;background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.5rem;}
+.avail-head{display:flex;align-items:center;gap:8px;margin-bottom:1.25rem;}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:var(--green-dot);animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(0.75);opacity:0.5;}}
+.avail-status{font-size:0.875rem;font-weight:500;color:var(--green);}
+.avail-dl{display:flex;flex-direction:column;}
+.avail-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:8px 0;border-bottom:1px solid var(--border);}
+.avail-row:last-child{border-bottom:none;}
+.avail-val{font-size:0.875rem;color:var(--text);}
+.avail-link{color:var(--text);transition:opacity 0.15s;}
+.avail-link:hover{opacity:0.7;}
+.socials{margin-top:1.5rem;}
+.s-lbl{margin-bottom:0.75rem;}
+.s-list{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;}
+.s-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);color:inherit;transition:background 0.15s;}
+.s-row:last-child{border-bottom:none;}
+.s-row:hover{background:var(--bg-alt);}
+.s-icon{width:32px;height:32px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--bg-card);display:flex;align-items:center;justify-content:center;color:var(--text-2);flex-shrink:0;}
+.s-name{display:block;font-size:0.875rem;font-weight:500;color:var(--text);}
+.s-handle{display:block;font-family:var(--font-mono);font-size:0.7rem;color:var(--text-3);}
+.s-arr{margin-left:auto;color:var(--text-3);transition:transform 0.2s,color 0.15s;flex-shrink:0;}
+.s-row:hover .s-arr{transform:translate(2px,-2px);color:var(--text);}
+.map-wrap{}
+.map-label{margin-bottom:0.75rem;display:block;}
+.map-frame{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border);}
+.map-frame iframe{display:block;filter:grayscale(15%);}
+[data-theme="dark"] .map-frame iframe{filter:grayscale(40%) invert(1) hue-rotate(180deg);}
+.map-link{display:inline-block;margin-top:0.6rem;color:var(--text-3);transition:color 0.15s;}
+.map-link:hover{color:var(--text);}
+.write-me{margin-top:1.5rem;background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.5rem;}
+.wm-desc{font-size:0.9rem;color:var(--text-2);margin-bottom:1.25rem;line-height:1.65;}
+.wm-btns{display:flex;gap:10px;flex-wrap:wrap;}
+@media(max-width:860px){.cw{grid-template-columns:1fr;gap:3rem;}}
 </style>
-
-<script>
-  const form = document.getElementById('cform') as HTMLFormElement;
-  const success = document.getElementById('success') as HTMLElement;
-  const sbtn = document.getElementById('sbtn') as HTMLButtonElement;
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const name  = (document.getElementById('name')  as HTMLInputElement).value;
-    const email = (document.getElementById('email') as HTMLInputElement).value;
-    const type  = (document.getElementById('type')  as HTMLSelectElement).value;
-    const msg   = (document.getElementById('msg')   as HTMLTextAreaElement).value;
-    window.location.href = `mailto:hi@mohamedch.com?subject=Portfolio: ${encodeURIComponent(type||'Contact')}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nType: ${type}\n\n${msg}`)}`;
-    success.classList.add('show');
-    sbtn.textContent = 'Sent ✓';
-    sbtn.disabled = true;
-  });
-</script>
