@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const files = await Astro.glob('../../content/blog/*.md');
+  return files
+    .filter((f: any) => f.frontmatter.lang === 'es')
+    .map((f: any) => ({
+      params: { slug: f.frontmatter.slug },
+      props:  { post: f },
+    }));
+}
+
+const { post } = Astro.props;
+const { title, excerpt, date, tags, author } = post.frontmatter;
+const Content = post.Content;
+
+const formattedDate = date
+  ? new Date(date).toLocaleDateString('es-ES', { year:'numeric', month:'long', day:'numeric' })
+  : '';
+---
+
+<BaseLayout title={`${title} — Mohamed Chennani`} lang="es" description={excerpt}>
+
+  <div style="padding-top:var(--nav-h)"></div>
+
+  <article class="post">
+    <div class="container">
+
+      <header class="post-header">
+        <div class="post-meta">
+          <time class="label">{formattedDate}</time>
+          {tags && tags.map((t: string) => <span class="tag">{t}</span>)}
+        </div>
+        <h1 class="post-title">{title}</h1>
+        {excerpt && <p class="post-excerpt">{excerpt}</p>}
+        <div class="post-author label">por {author ?? 'Mohamed Chennani'}</div>
+      </header>
+
+      <div class="post-body">
+        <Content />
+      </div>
+
+      <footer class="post-footer">
+        <a href="/blog" class="back">← Volver al blog</a>
+      </footer>
+
+    </div>
+  </article>
+
+</BaseLayout>
+
+<style>
+.post { padding-bottom: 5rem; }
+
+.post-header {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.post-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.post-excerpt {
+  font-size: 1.05rem;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.post-author { margin-top: 0.5rem; }
+
+.post-body {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-2);
+}
+
+.post-body :global(h2) {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 400;
+  color: var(--text);
+  margin: 2.5rem 0 1rem;
+  letter-spacing: -0.015em;
+}
+
+.post-body :global(h3) {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--text);
+  margin: 2rem 0 0.75rem;
+}
+
+.post-body :global(p) { margin-bottom: 1.25rem; }
+
+.post-body :global(ul),
+.post-body :global(ol) {
+  margin: 0 0 1.25rem 1.5rem;
+}
+
+.post-body :global(li) { margin-bottom: 0.4rem; }
+
+.post-body :global(pre) {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.post-body :global(code) {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  border-radius: var(--r-xs);
+  color: var(--text);
+}
+
+.post-body :global(pre code) {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.post-body :global(blockquote) {
+  border-left: 3px solid var(--border-mid);
+  margin: 1.5rem 0;
+  padding: 0.5rem 0 0.5rem 1.25rem;
+  color: var(--text-2);
+  font-style: italic;
+}
+
+.post-body :global(a) {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border-mid);
+  transition: text-decoration-color 0.15s;
+}
+.post-body :global(a:hover) { text-decoration-color: var(--text); }
+
+.post-footer {
+  max-width: 720px;
+  margin: 3rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.back {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  transition: color 0.15s;
+}
+.back:hover { color: var(--text); }
+</style>
