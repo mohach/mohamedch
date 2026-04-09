@@ -3,7 +3,7 @@ title: "Cómo contribuir a proyectos open source en GitHub"
 excerpt: "Aprende a colaborar en proyectos de código abierto en GitHub con esta guía práctica paso a paso."
 date: "2026-04-09"
 lang: "es"
-slug: "como-contribuir-a-proyectos-open-source-en-github"
+slug: "como-contribuir-proyectos-open-source-github"
 tags: ["linux", "open source", "desarrollo web", "técnico informático"]
 author: "Mohamed Chennani"
 ---

@@ -5,25 +5,19 @@ import { ui } from '../../i18n';
 
 const t = ui.es;
 
-// Read all ES blog posts from src/content/blog
-// Files follow pattern: YYYY-MM-DD-slug-es.md
-let posts: Array<{ title: string; excerpt: string; date: string; slug: string; tags: string[]; readTime: string }> = [];
+const files = await Astro.glob('../../content/blog/*.md');
 
-try {
-  const files = await Astro.glob('../../content/blog/*-es.md');
-  posts = files
-    .map((f: any) => ({
-      title:    f.frontmatter.title    ?? 'Sin título',
-      excerpt:  f.frontmatter.excerpt  ?? '',
-      date:     f.frontmatter.date     ?? '',
-      slug:     f.frontmatter.slug     ?? '',
-      tags:     f.frontmatter.tags     ?? [],
-      readTime: '5 min de lectura',
-    }))
-    .sort((a, b) => b.date.localeCompare(a.date));
-} catch(e) {
-  posts = [];
-}
+const posts = files
+  .filter((f: any) => f.frontmatter.lang === 'es')
+  .map((f: any) => ({
+    title:    f.frontmatter.title    ?? 'Sin título',
+    excerpt:  f.frontmatter.excerpt  ?? '',
+    date:     f.frontmatter.date     ?? '',
+    slug:     f.frontmatter.slug     ?? '',
+    tags:     Array.isArray(f.frontmatter.tags) ? f.frontmatter.tags : [],
+    readTime: '5 min de lectura',
+  }))
+  .sort((a: any, b: any) => b.date.localeCompare(a.date));
 ---
 
 <BaseLayout title="Blog — Mohamed Chennani" lang="es"
@@ -36,12 +30,10 @@ try {
       <SectionHeader label={t.blog.label} title={t.blog.title} sub={t.blog.sub} />
 
       {posts.length === 0 ? (
-        <div class="empty reveal">
-          <p>{t.blog.noPost}</p>
-        </div>
+        <p class="empty">{t.blog.noPost}</p>
       ) : (
         <div class="blist">
-          {posts.map((p, i) => (
+          {posts.map((p: any, i: number) => (
             <a href={`/blog/${p.slug}`} class="brow reveal" style={`transition-delay:${i*0.06}s`}>
               <div class="brow-meta">
                 <time class="label">{p.date}</time>
@@ -63,16 +55,16 @@ try {
 </BaseLayout>
 
 <style>
-.empty { padding: 3rem 0; color: var(--text-2); font-size: 1rem; }
-.blist { border-top: 1px solid var(--border); }
-.brow { display:flex; flex-direction:column; gap:0.65rem; padding:1.75rem 0; border-bottom:1px solid var(--border); color:inherit; }
-.brow-meta { display:flex; align-items:center; gap:1rem; }
-.brow-rt::before { content:'·'; margin-right:1rem; }
-.brow-title { font-family:var(--font-serif); font-size:clamp(1.05rem,1.8vw,1.3rem); font-weight:400; color:var(--text); transition:opacity 0.15s; }
-.brow:hover .brow-title { opacity:0.6; }
-.brow-exc { font-size:0.875rem; color:var(--text-2); line-height:1.65; }
-.brow-foot { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:0.25rem; }
-.brow-tags { display:flex; flex-wrap:wrap; gap:5px; }
-.brow-arr { color:var(--text-3); font-size:1rem; transition:transform 0.2s, color 0.15s; flex-shrink:0; }
-.brow:hover .brow-arr { transform:translateX(5px); color:var(--text); }
+.empty{padding:3rem 0;color:var(--text-2);}
+.blist{border-top:1px solid var(--border);}
+.brow{display:flex;flex-direction:column;gap:0.65rem;padding:1.75rem 0;border-bottom:1px solid var(--border);color:inherit;}
+.brow-meta{display:flex;align-items:center;gap:1rem;}
+.brow-rt::before{content:'·';margin-right:1rem;}
+.brow-title{font-family:var(--font-serif);font-size:clamp(1.05rem,1.8vw,1.3rem);font-weight:400;color:var(--text);transition:opacity 0.15s;}
+.brow:hover .brow-title{opacity:0.6;}
+.brow-exc{font-size:0.875rem;color:var(--text-2);line-height:1.65;}
+.brow-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:0.25rem;}
+.brow-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.brow-arr{color:var(--text-3);font-size:1rem;transition:transform 0.2s,color 0.15s;flex-shrink:0;}
+.brow:hover .brow-arr{transform:translateX(5px);color:var(--text);}
 </style>
