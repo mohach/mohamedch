@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mohamed Chennani — CV</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.35;
+            color: #333;
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 15mm 20mm;
+        }
+        .header { display:flex; justify-content:space-between; margin-bottom:20px; padding-bottom:15px; border-bottom:2px solid #2c5282; }
+        .name { font-size:24px; font-weight:700; color:#2c5282; margin:0; }
+        .title { font-size:16px; color:#4a5568; margin:2px 0 0 0; }
+        .contact { text-align:right; font-size:10pt; line-height:1.4; }
+        .contact div { margin-bottom:3px; }
+        .section { margin-bottom:16px; }
+        .section-title { font-size:14px; font-weight:700; color:#2c5282; margin:0 0 8px 0; padding-bottom:3px; border-bottom:1px solid #e2e8f0; text-transform:uppercase; }
+        .summary { font-size:11pt; line-height:1.5; color:#4a5568; margin-bottom:16px; }
+        .exp-item { margin-bottom:12px; }
+        .exp-header { display:flex; justify-content:space-between; margin-bottom:2px; }
+        .exp-role { font-size:13px; font-weight:600; color:#2d3748; margin:0; }
+        .exp-company { font-size:12px; color:#4a5568; }
+        .exp-period { font-size:11px; color:#718096; }
+        .exp-desc { font-size:11px; color:#4a5568; margin:2px 0 0 0; line-height:1.4; }
+        .skills-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px 16px; }
+        .skill-item { margin-bottom:6px; }
+        .skill-name { font-size:11px; color:#4a5568; margin-bottom:3px; display:flex; justify-content:space-between; }
+        .skill-bar { height:3px; background:#e2e8f0; border-radius:2px; overflow:hidden; }
+        .skill-fill { height:100%; background:#2c5282; border-radius:2px; }
+        .langs { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+        .lang-item { display:flex; justify-content:space-between; }
+        .lang-name { font-size:11px; color:#4a5568; }
+        .lang-level { font-size:10px; color:#718096; }
+        .cert-item { margin-bottom:10px; display:flex; justify-content:space-between; }
+        .cert-title { font-size:11px; color:#2d3748; font-weight:500; margin:0; }
+        .cert-org { font-size:10px; color:#718096; margin:2px 0 0 0; }
+        .cert-year { font-size:10px; color:#718096; }
+        .project-item { margin-bottom:14px; }
+        .project-title { font-size:12px; font-weight:600; color:#2d3748; margin:0 0 4px 0; }
+        .project-category { font-size:10px; color:#718096; margin:0 0 6px 0; }
+        .project-desc { font-size:11px; color:#4a5568; line-height:1.5; margin:0; }
+        .edu-item { margin-bottom:12px; }
+        .edu-header { display:flex; justify-content:space-between; margin-bottom:2px; }
+        .edu-title { font-size:12px; font-weight:600; color:#2d3748; margin:0; }
+        .edu-org { font-size:11px; color:#4a5568; margin:0; }
+        .edu-loc { font-size:10px; color:#718096; margin:2px 0 0 0; }
+        .footer { margin-top:25px; padding-top:15px; border-top:1px solid #e2e8f0; font-size:9px; color:#718096; text-align:center; }
+        @media print {
+            body { width:210mm; height:297mm; margin:0; padding:15mm 20mm; }
+            @page { size:A4; margin:15mm 20mm; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1 class="name">Mohamed Chennani</h1>
+            <p class="title">Técnico Informático & Especialista en Sistemas</p>
+        </div>
+        <div class="contact">
+            <div>hi@mohamedch.com</div>
+            <div>642 074 283</div>
+            <div>Alaquas, Valencia, Spain</div>
+            <div>https://mohamedch.com</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Resumen Profesional</h2>
+        <p class="summary">Técnico informático con más de 10 años de experiencia práctica especializado en administración de sistemas Linux, redes, Cloudflare, y soluciones de streaming/IPTV. Experiencia en soporte técnico remoto y presencial, administración de servidores, desarrollo web y automatización. Hablo español, inglés, francés y árabe. Trabajo de forma independiente como freelance resolviendo problemas técnicos reales para clientes en España.</p>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Experiencia Laboral</h2>
+        <div class="exp-item">
+            <div class="exp-header">
+                <div>
+                    <h3 class="exp-role">Técnico Informático Freelance / Soporte IT</h3>
+                    <p class="exp-company">Autónomo</p>
+                </div>
+                <span class="exp-period">2020 — Actualidad</span>
+            </div>
+            <p class="exp-desc">• Soporte técnico a clientes en España (remoto y presencial)<br>• Administración de servidores Linux (Ubuntu, Debian, CentOS)<br>• Configuración y optimización de Cloudflare (DNS, CDN, Workers)<br>• Implementación de soluciones de streaming/IPTV (HLS, SRS, FFmpeg)<br>• Desarrollo y mantenimiento de sitios web (WordPress, Astro)<br>• Reparación de hardware y resolución de problemas de red<br>• Automatización de procesos con Python, Bash y GitHub Actions</p>
+        </div>
+        <div class="exp-item">
+            <div class="exp-header">
+                <div>
+                    <h3 class="exp-role">Técnico Informático</h3>
+                    <p class="exp-company">Tienda propia</p>
+                </div>
+                <span class="exp-period">2013 — 2019</span>
+            </div>
+            <p class="exp-desc">• Reparación de ordenadores y dispositivos móviles<br>• Montaje y venta de equipos informáticos personalizados<br>• Instalación y configuración de software y sistemas operativos<br>• Configuración de redes locales (LAN/Wi-Fi)<br>• Atención al cliente y asesoramiento técnico<br>• Gestión de inventario y proveedores</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Habilidades Técnicas</h2>
+        <div class="skills-grid">
+            <div class="skill-item"><div class="skill-name"><span>Linux / Unix</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+            <div class="skill-item"><div class="skill-name"><span>Redes & Networking</span><span>80%</span></div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+            <div class="skill-item"><div class="skill-name"><span>Cloudflare / DNS</span><span>82%</span></div><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
+            <div class="skill-item"><div class="skill-name"><span>Nginx / Apache</span><span>78%</span></div><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+            <div class="skill-item"><div class="skill-name"><span>Seguridad de redes</span><span>72%</span></div><div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></div>
+            <div class="skill-item"><div class="skill-name"><span>Git & GitHub</span><span>70%</span></div><div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div></div>
+            <div class="skill-item"><div class="skill-name"><span>Desarrollo web</span><span>75%</span></div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+            <div class="skill-item"><div class="skill-name"><span>HTML & CSS</span><span>78%</span></div><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+            <div class="skill-item"><div class="skill-name"><span>WordPress / CMS</span><span>80%</span></div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+            <div class="skill-item"><div class="skill-name"><span>Astro / Jekyll / Hugo</span><span>72%</span></div><div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></div>
+            <div class="skill-item"><div class="skill-name"><span>Python / Scripting</span><span>60%</span></div><div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div></div>
+            <div class="skill-item"><div class="skill-name"><span>Bash / Shell</span><span>75%</span></div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+            <div class="skill-item"><div class="skill-name"><span>Streaming / IPTV</span><span>83%</span></div><div class="skill-bar"><div class="skill-fill" style="width:83%"></div></div></div>
+            <div class="skill-item"><div class="skill-name"><span>VPS / Cloud</span><span>80%</span></div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+            <div class="skill-item"><div class="skill-name"><span>Soporte HW & SW</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Proyectos Destacados</h2>
+        <div class="project-item">
+            <h3 class="project-title">yesmatch.live</h3>
+            <p class="project-category">Plataforma de Streaming Deportivo · 2024</p>
+            <p class="project-desc">Plataforma de streaming deportivo en árabe con infraestructura de 4 servidores, Cloudflare Workers, y sistema de subdominios hash para protección DMCA.</p>
+        </div>
+        <div class="project-item">
+            <h3 class="project-title">pinturasmoha.es</h3>
+            <p class="project-category">Sitio Web para Negocio Local · 2024</p>
+            <p class="project-desc">Sitio web completo para pintor profesional con blog automatizado diario usando GitHub Actions y Gemini API.</p>
+        </div>
+        <div class="project-item">
+            <h3 class="project-title">news.yesmatch.live</h3>
+            <p class="project-category">Blog de Noticias Automatizado · 2024</p>
+            <p class="project-desc">Blog de noticias de fútbol árabe 100% automatizado con Astro, DeepSeek API y GitHub Actions.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Idiomas</h2>
+        <div class="langs">
+            <div class="lang-item"><span class="lang-name">Árabe</span><span class="lang-level">Nativo</span></div>
+            <div class="lang-item"><span class="lang-name">Inglés</span><span class="lang-level">Avanzado</span></div>
+            <div class="lang-item"><span class="lang-name">Español</span><span class="lang-level">Intermedio</span></div>
+            <div class="lang-item"><span class="lang-name">Francés</span><span class="lang-level">Intermedio</span></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Certificaciones</h2>
+        <div class="cert-item">
+            <div><h3 class="cert-title">Mantenimiento de dispositivos tecnológicos</h3><p class="cert-org">Agencia Digital de Andalucía</p></div>
+            <span class="cert-year">2025</span>
+        </div>
+        <div class="cert-item">
+            <div><h3 class="cert-title">Aspectos básicos de la asistencia técnica</h3><p class="cert-org">Google / Coursera</p></div>
+            <span class="cert-year">2023</span>
+        </div>
+        <div class="cert-item">
+            <div><h3 class="cert-title">Introduction to HTML5</h3><p class="cert-org">University of Michigan / Coursera</p></div>
+            <span class="cert-year">2023</span>
+        </div>
+        <div class="cert-item">
+            <div><h3 class="cert-title">Fundamentals of Network Security</h3><p class="cert-org">Alison — CPD Certified</p></div>
+            <span class="cert-year">2016</span>
+        </div>
+        <div class="cert-item">
+            <div><h3 class="cert-title">LFS101x.2: Introduction to Linux</h3><p class="cert-org">Linux Foundation / edX</p></div>
+            <span class="cert-year">2016</span>
+        </div>
+        <div class="cert-item">
+            <div><h3 class="cert-title">WordPress – Blogging on the Web</h3><p class="cert-org">Alison — CPD Certified</p></div>
+            <span class="cert-year">2015</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Educación</h2>
+        <div class="edu-item">
+            <div class="edu-header">
+                <h3 class="edu-title">Formación Profesional en Informática</h3>
+                <span class="exp-period">Grado Medio</span>
+            </div>
+            <p class="edu-org">OFPPT</p>
+            <p class="edu-loc">Khouribga, Marruecos · 1 año cursado</p>
+        </div>
+        <div class="edu-item">
+            <div class="edu-header">
+                <h3 class="edu-title">Bachillerato — rama PC</h3>
+                <span class="exp-period">Bachillerato</span>
+            </div>
+            <p class="edu-org">Ibn Abdoune High School</p>
+            <p class="edu-loc">Khouribga, Marruecos · 1º curso cursado</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Última actualización: 13 de abril de 2026</p>
+        <p>CV disponible en línea en: https://mohamedch.com/cv</p>
+    </div>
+</body>
+</html>
