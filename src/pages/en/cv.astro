@@ -18,15 +18,7 @@ const p = personal;
         <p class="cv-subtitle">Professional A4 format ready to print</p>
       </div>
       <div class="cv-buttons">
-        <button onclick="window.print()" class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="6 9 6 2 18 2 18 9"></polyline>
-            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-            <rect x="6" y="14" width="12" height="8"></rect>
-          </svg>
-          Print / Save PDF
-        </button>
-        <a href="/cv-clean.pdf" class="btn btn-secondary" download="Mohamed_Chennani_CV.pdf">
+        <a href="/cv-clean.pdf" class="btn btn-primary" download="Mohamed_Chennani_CV.pdf">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
@@ -49,22 +41,22 @@ const p = personal;
       <div class="instruction">
         <div class="instruction-icon">💡</div>
         <div>
-          <h3>Option 1: Static PDF (Recommended)</h3>
-          <p>Click <strong>"Download Static PDF"</strong> to get a clean 1-page CV without website elements. Already optimized for A4.</p>
-        </div>
-      </div>
-      <div class="instruction">
-        <div class="instruction-icon">🖨️</div>
-        <div>
-          <h3>Option 2: Print from browser</h3>
-          <p>Click <strong>"Print / Save PDF"</strong> → Select <strong>"Save as PDF"</strong> → Set margins to <strong>"None"</strong>.</p>
+          <h3>Download CV PDF</h3>
+          <p>Click <strong>"Download CV PDF"</strong> to get a clean 1-page CV without website elements. Already optimized for A4.</p>
         </div>
       </div>
       <div class="instruction">
         <div class="instruction-icon">📄</div>
         <div>
-          <h3>A4 optimized format:</h3>
-          <p>Both options generate a 1-page CV in A4 format (210×297mm) with professional design.</p>
+          <h3>A4 Professional Format</h3>
+          <p>CV optimized for A4 paper (210×297mm). Professional design ready for recruiters.</p>
+        </div>
+      </div>
+      <div class="instruction">
+        <div class="instruction-icon">✅</div>
+        <div>
+          <h3>Ready to use</h3>
+          <p>Direct download of the PDF file. No additional configuration needed.</p>
         </div>
       </div>
     </div>
@@ -74,18 +66,18 @@ const p = personal;
       <CV />
     </div>
 
-    <!-- Buttons at the bottom -->
+    <!-- Download button at the bottom -->
     <div class="cv-footer-actions">
-      <button onclick="window.print()" class="btn btn-primary btn-large">
+      <a href="/cv-clean.pdf" class="btn btn-primary btn-large" download="Mohamed_Chennani_CV.pdf">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="6 9 6 2 18 2 18 9"></polyline>
-          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a22 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-          <rect x="6" y="14" width="12" height="8"></rect>
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
-        Download CV as PDF
-      </button>
+        Download CV PDF
+      </a>
       <p class="cv-note">
-        You can also <a href="javascript:window.print()">print directly</a> or 
+        You can also <a href="/download-cv">visit the download page</a> or 
         <a href="/en/contact">contact me</a> if you need a customized version.
       </p>
     </div>
