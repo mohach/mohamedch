@@ -213,19 +213,48 @@ const p = personal;
       .cv-footer-actions,
       .nav,
       .footer,
-      .waf {
+      .waf,
+      #printLoader {
         display: none !important;
       }
       
       .cv-page {
-        padding: 0;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        min-height: auto !important;
       }
       
       .cv-preview {
-        box-shadow: none;
-        border: none;
-        border-radius: 0;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
       }
+      
+      /* Optimize for A4 */
+      @page {
+        size: A4;
+        margin: 15mm;
+      }
+      
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background: white !important;
+        color: black !important;
+      }
+    }
+    
+    /* Print mode (before printing) */
+    body.print-mode * {
+      animation: none !important;
+      transition: none !important;
+    }
+    
+    body.print-mode .cv-preview {
+      transform: none !important;
+      opacity: 1 !important;
     }
 
     /* Responsive */
@@ -257,25 +286,88 @@ const p = personal;
   <script>
     // Improve printing experience
     document.addEventListener('DOMContentLoaded', () => {
-      // Add before print event
+      // Function to show loader
+      function showPrintLoader() {
+        const loader = document.createElement('div');
+        loader.id = 'printLoader';
+        loader.innerHTML = `
+          <div style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:center;justify-content:center;">
+            <div style="background:white;padding:2rem;border-radius:12px;text-align:center;max-width:400px;">
+              <div style="font-size:3rem;margin-bottom:1rem;">🖨️</div>
+              <h3 style="margin:0 0 1rem 0;">Preparing print...</h3>
+              <p style="color:#666;margin:0 0 1.5rem 0;">This may take a few seconds. Select <strong>"Save as PDF"</strong> as printer.</p>
+              <div style="display:flex;gap:0.5rem;justify-content:center;">
+                <button onclick="document.getElementById('printLoader').remove();" style="padding:8px 16px;border:1px solid #ddd;background:white;border-radius:6px;cursor:pointer;">Cancel</button>
+              </div>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(loader);
+        
+        // Auto-remove after 10 seconds
+        setTimeout(() => {
+          if (document.getElementById('printLoader')) {
+            document.getElementById('printLoader').remove();
+          }
+        }, 10000);
+      }
+      
+      // Optimized print function
+      function optimizedPrint() {
+        // Show loader
+        showPrintLoader();
+        
+        // Disable animations before printing
+        document.body.classList.add('print-mode');
+        
+        // Small delay for styles to apply
+        setTimeout(() => {
+          // Try to print
+          window.print();
+          
+          // Remove loader after a while
+          setTimeout(() => {
+            if (document.getElementById('printLoader')) {
+              document.getElementById('printLoader').remove();
+            }
+            document.body.classList.remove('print-mode');
+          }, 1000);
+        }, 100);
+      }
+      
+      // Replace all print buttons
+      document.querySelectorAll('[onclick="window.print()"]').forEach(btn => {
+        // Remove original onclick
+        btn.removeAttribute('onclick');
+        
+        // Add new event
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          optimizedPrint();
+        });
+      });
+      
+      // Also replace links with javascript:window.print()
+      document.querySelectorAll('a[href^="javascript:window.print"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          optimizedPrint();
+        });
+      });
+      
+      // Native print events
       window.addEventListener('beforeprint', () => {
         document.body.classList.add('printing');
+        // Hide loader if still visible
+        if (document.getElementById('printLoader')) {
+          document.getElementById('printLoader').remove();
+        }
       });
       
       window.addEventListener('afterprint', () => {
         document.body.classList.remove('printing');
+        document.body.classList.remove('print-mode');
       });
-      
-      // Helpful message for users
-      const printBtn = document.querySelector('[onclick="window.print()"]');
-      if (printBtn) {
-        printBtn.addEventListener('click', (e) => {
-          if (!e.target.closest('a')) {
-            // Show helpful message
-            console.log('💡 Tip: Select "Save as PDF" as printer to get the CV in A4 format.');
-          }
-        });
-      }
     });
   </script>
 </BaseLayout>
