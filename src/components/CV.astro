@@ -11,12 +11,13 @@ const p = personal;
     max-width: 210mm; /* A4 width */
     min-height: 297mm; /* A4 height */
     margin: 0 auto;
-    padding: 20mm;
+    padding: 15mm 20mm; /* Reducido padding superior/inferior */
     background: white;
     color: #333;
     font-family: 'Segoe UI', system-ui, sans-serif;
-    line-height: 1.4;
+    line-height: 1.35; /* Más compacto */
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    font-size: 11pt; /* Tamaño estándar para CV */
   }
 
   /* Header del CV */
@@ -30,16 +31,16 @@ const p = personal;
   }
 
   .cv-name {
-    font-size: 28px;
+    font-size: 24px; /* Reducido de 28px */
     font-weight: 700;
     color: #2c5282;
     margin: 0;
   }
 
   .cv-title {
-    font-size: 18px;
+    font-size: 16px; /* Reducido de 18px */
     color: #4a5568;
-    margin: 4px 0 0 0;
+    margin: 2px 0 0 0; /* Reducido margen */
     font-weight: 500;
   }
 
@@ -56,16 +57,16 @@ const p = personal;
 
   /* Secciones */
   .cv-section {
-    margin-bottom: 20px;
+    margin-bottom: 16px; /* Reducido de 20px */
     page-break-inside: avoid;
   }
 
   .cv-section-title {
-    font-size: 16px;
+    font-size: 14px; /* Reducido de 16px */
     font-weight: 700;
     color: #2c5282;
-    margin: 0 0 12px 0;
-    padding-bottom: 4px;
+    margin: 0 0 8px 0; /* Reducido de 12px */
+    padding-bottom: 3px;
     border-bottom: 1px solid #e2e8f0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -73,71 +74,71 @@ const p = personal;
 
   /* Resumen */
   .cv-summary {
-    font-size: 13px;
-    line-height: 1.6;
+    font-size: 11px; /* Reducido de 13px */
+    line-height: 1.5; /* Reducido de 1.6 */
     color: #4a5568;
-    margin-bottom: 20px;
+    margin-bottom: 16px; /* Reducido de 20px */
   }
 
   /* Experiencia */
   .cv-experience-item {
-    margin-bottom: 16px;
+    margin-bottom: 12px; /* Reducido de 16px */
   }
 
   .cv-exp-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 4px;
+    margin-bottom: 2px; /* Reducido de 4px */
   }
 
   .cv-exp-role {
-    font-size: 14px;
+    font-size: 13px; /* Reducido de 14px */
     font-weight: 600;
     color: #2d3748;
     margin: 0;
   }
 
   .cv-exp-company {
-    font-size: 13px;
+    font-size: 12px; /* Reducido de 13px */
     color: #4a5568;
     font-weight: 500;
   }
 
   .cv-exp-period {
-    font-size: 12px;
+    font-size: 11px; /* Reducido de 12px */
     color: #718096;
     white-space: nowrap;
   }
 
   .cv-exp-desc {
-    font-size: 12px;
+    font-size: 11px; /* Reducido de 12px */
     color: #4a5568;
-    margin: 4px 0 0 0;
-    line-height: 1.5;
+    margin: 2px 0 0 0; /* Reducido de 4px */
+    line-height: 1.4; /* Reducido de 1.5 */
   }
 
   /* Habilidades */
   .cv-skills-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px 24px;
+    gap: 8px 16px; /* Reducido de 12px 24px */
   }
 
   .cv-skill-item {
-    margin-bottom: 8px;
+    margin-bottom: 6px; /* Reducido de 8px */
   }
 
   .cv-skill-name {
-    font-size: 12px;
+    font-size: 11px; /* Reducido de 12px */
     color: #4a5568;
-    margin-bottom: 4px;
+    margin-bottom: 3px; /* Reducido de 4px */
     display: flex;
     justify-content: space-between;
   }
 
   .cv-skill-bar {
-    height: 4px;
+    height: 3px; /* Reducido de 4px */
     background: #e2e8f0;
     border-radius: 2px;
     overflow: hidden;
