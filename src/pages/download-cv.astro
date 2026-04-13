@@ -1,0 +1,388 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ui, personal } from '../i18n.ts';
+
+const t = ui.es;
+const p = personal;
+---
+
+<BaseLayout title={`${p.name} — Descargar CV`} lang="es"
+  description="Descarga el Curriculum Vitae de Mohamed Chennani — Técnico Informático con más de 10 años de experiencia.">
+
+  <div class="download-page">
+    <div class="download-container">
+      <div class="download-header">
+        <h1>Descargar Curriculum Vitae</h1>
+        <p class="download-subtitle">PDF profesional de 1 página listo para imprimir</p>
+      </div>
+
+      <div class="download-card">
+        <div class="card-icon">📄</div>
+        <h2>CV Profesional - 1 Página</h2>
+        <p class="card-desc">
+          CV optimizado en formato A4, listo para enviar a reclutadores o incluir en tu CV tradicional.
+        </p>
+        
+        <div class="file-info">
+          <div class="info-item">
+            <span class="info-label">Formato:</span>
+            <span class="info-value">PDF (A4)</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Páginas:</span>
+            <span class="info-value">1</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Tamaño:</span>
+            <span class="info-value">32 KB</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Actualizado:</span>
+            <span class="info-value">13 de abril 2026</span>
+          </div>
+        </div>
+
+        <div class="download-actions">
+          <a href="/cv-clean.pdf" class="btn-download" download="Mohamed_Chennani_CV.pdf">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Descargar CV PDF
+          </a>
+          
+          <div class="secondary-actions">
+            <a href="/cv" class="btn-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+              Ver CV en web
+            </a>
+            <a href="/" class="btn-ghost">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              Volver al inicio
+            </a>
+          </div>
+        </div>
+
+        <div class="download-tips">
+          <h3>💡 Consejos para usar el CV:</h3>
+          <ul>
+            <li><strong>Imprimir:</strong> Selecciona "Guardar como PDF" como impresora</li>
+            <li><strong>Márgenes:</strong> Ajusta a "Ninguno" o "Mínimo"</li>
+            <li><strong>Formato:</strong> Papel A4 (210×297mm)</li>
+            <li><strong>Compartir:</strong> Envía el archivo PDF directamente</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="alternative-options">
+        <h3>Otras opciones:</h3>
+        <div class="options-grid">
+          <a href="/cv" class="option-card">
+            <div class="option-icon">🖥️</div>
+            <h4>CV en web</h4>
+            <p>Versión interactiva con animaciones</p>
+          </a>
+          <a href="/cv-static.html" class="option-card" target="_blank">
+            <div class="option-icon">🖨️</div>
+            <h4>CV para imprimir</h4>
+            <p>Versión HTML limpia para imprimir</p>
+          </a>
+          <a href="/contact" class="option-card">
+            <div class="option-icon">📧</div>
+            <h4>CV personalizado</h4>
+            <p>Solicita una versión adaptada</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .download-page {
+      padding: calc(var(--nav-h) + 2rem) 0 4rem;
+      min-height: 100vh;
+      background: var(--bg-alt);
+    }
+
+    .download-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .download-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .download-header h1 {
+      font-size: 2.8rem;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .download-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-2);
+      margin: 0;
+    }
+
+    .download-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 3rem;
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+
+    .card-icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .download-card h2 {
+      font-size: 1.8rem;
+      margin: 0 0 1rem 0;
+      color: var(--text);
+    }
+
+    .card-desc {
+      font-size: 1rem;
+      color: var(--text-2);
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+
+    .file-info {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      padding: 1.5rem;
+      background: var(--bg-alt);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+    }
+
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+    }
+
+    .info-label {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      font-weight: 500;
+    }
+
+    .info-value {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .download-actions {
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      border-radius: var(--r-lg);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s var(--ease);
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-download:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+    }
+
+    .btn-download svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .secondary-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary, .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--r-md);
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s var(--ease);
+    }
+
+    .btn-secondary {
+      background: var(--bg-alt);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg);
+      border-color: var(--border-mid);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-2);
+      border: 1px solid transparent;
+    }
+
+    .btn-ghost:hover {
+      color: var(--text);
+      background: var(--bg-alt);
+    }
+
+    .download-tips {
+      text-align: left;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .download-tips h3 {
+      font-size: 1.1rem;
+      margin: 0 0 1rem 0;
+      color: var(--text);
+    }
+
+    .download-tips ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .download-tips li {
+      font-size: 0.95rem;
+      color: var(--text-2);
+      margin-bottom: 0.5rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .download-tips li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .alternative-options {
+      margin-top: 3rem;
+    }
+
+    .alternative-options h3 {
+      font-size: 1.3rem;
+      margin: 0 0 1.5rem 0;
+      color: var(--text);
+      text-align: center;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .option-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.5rem;
+      text-decoration: none;
+      transition: all 0.2s var(--ease);
+    }
+
+    .option-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-mid);
+      box-shadow: var(--shadow-md);
+    }
+
+    .option-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .option-card h4 {
+      font-size: 1.1rem;
+      margin: 0 0 0.5rem 0;
+      color: var(--text);
+    }
+
+    .option-card p {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .download-container {
+        padding: 0 1rem;
+      }
+      
+      .download-header h1 {
+        font-size: 2.2rem;
+      }
+      
+      .download-card {
+        padding: 2rem;
+      }
+      
+      .file-info {
+        grid-template-columns: 1fr;
+      }
+      
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .btn-download {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .secondary-actions {
+        flex-direction: column;
+      }
+      
+      .btn-secondary, .btn-ghost {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</BaseLayout>
