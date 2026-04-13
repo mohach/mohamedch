@@ -1,0 +1,496 @@
+---
+import { personal, skills, langs, certs, ui } from '../i18n.ts';
+
+const t = ui.es;
+const p = personal;
+---
+
+<style>
+  /* Estilos específicos para impresión A4 */
+  .cv-container {
+    max-width: 210mm; /* A4 width */
+    min-height: 297mm; /* A4 height */
+    margin: 0 auto;
+    padding: 20mm;
+    background: white;
+    color: #333;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.4;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  }
+
+  /* Header del CV */
+  .cv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #2c5282;
+  }
+
+  .cv-name {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c5282;
+    margin: 0;
+  }
+
+  .cv-title {
+    font-size: 18px;
+    color: #4a5568;
+    margin: 4px 0 0 0;
+    font-weight: 500;
+  }
+
+  .cv-contact {
+    text-align: right;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .cv-contact a {
+    color: #2c5282;
+    text-decoration: none;
+  }
+
+  /* Secciones */
+  .cv-section {
+    margin-bottom: 20px;
+    page-break-inside: avoid;
+  }
+
+  .cv-section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2c5282;
+    margin: 0 0 12px 0;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #e2e8f0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Resumen */
+  .cv-summary {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #4a5568;
+    margin-bottom: 20px;
+  }
+
+  /* Experiencia */
+  .cv-experience-item {
+    margin-bottom: 16px;
+  }
+
+  .cv-exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+
+  .cv-exp-role {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0;
+  }
+
+  .cv-exp-company {
+    font-size: 13px;
+    color: #4a5568;
+    font-weight: 500;
+  }
+
+  .cv-exp-period {
+    font-size: 12px;
+    color: #718096;
+    white-space: nowrap;
+  }
+
+  .cv-exp-desc {
+    font-size: 12px;
+    color: #4a5568;
+    margin: 4px 0 0 0;
+    line-height: 1.5;
+  }
+
+  /* Habilidades */
+  .cv-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px 24px;
+  }
+
+  .cv-skill-item {
+    margin-bottom: 8px;
+  }
+
+  .cv-skill-name {
+    font-size: 12px;
+    color: #4a5568;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .cv-skill-bar {
+    height: 4px;
+    background: #e2e8f0;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .cv-skill-fill {
+    height: 100%;
+    background: #2c5282;
+    border-radius: 2px;
+  }
+
+  /* Idiomas */
+  .cv-langs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .cv-lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cv-lang-name {
+    font-size: 12px;
+    color: #4a5568;
+  }
+
+  .cv-lang-level {
+    font-size: 11px;
+    color: #718096;
+    font-weight: 500;
+  }
+
+  /* Certificaciones */
+  .cv-cert-item {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .cv-cert-title {
+    font-size: 12px;
+    color: #2d3748;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .cv-cert-org {
+    font-size: 11px;
+    color: #718096;
+    margin: 2px 0 0 0;
+  }
+
+  .cv-cert-year {
+    font-size: 11px;
+    color: #718096;
+    white-space: nowrap;
+    margin-left: 16px;
+  }
+
+  /* Proyectos */
+  .cv-project-item {
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+  }
+
+  .cv-project-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0 0 4px 0;
+  }
+
+  .cv-project-category {
+    font-size: 11px;
+    color: #718096;
+    margin: 0 0 6px 0;
+    font-weight: 500;
+  }
+
+  .cv-project-desc {
+    font-size: 12px;
+    color: #4a5568;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Educación */
+  .cv-edu-item {
+    margin-bottom: 12px;
+  }
+
+  .cv-edu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+
+  .cv-edu-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0;
+  }
+
+  .cv-edu-org {
+    font-size: 12px;
+    color: #4a5568;
+    margin: 0;
+  }
+
+  .cv-edu-loc {
+    font-size: 11px;
+    color: #718096;
+    margin: 2px 0 0 0;
+  }
+
+  /* Estilos de impresión */
+  @media print {
+    .cv-container {
+      box-shadow: none;
+      margin: 0;
+      padding: 15mm;
+      max-width: 100%;
+      min-height: 100%;
+    }
+    
+    body {
+      background: white !important;
+    }
+    
+    .no-print {
+      display: none !important;
+    }
+    
+    a {
+      color: #333 !important;
+      text-decoration: none !important;
+    }
+    
+    .cv-contact a::after {
+      content: " (" attr(href) ")";
+      font-size: 10px;
+      color: #718096;
+    }
+  }
+
+  /* Responsive para pantalla */
+  @media screen and (max-width: 768px) {
+    .cv-container {
+      padding: 16px;
+      box-shadow: none;
+    }
+    
+    .cv-header {
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .cv-contact {
+      text-align: left;
+    }
+    
+    .cv-skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .cv-langs {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="cv-container">
+  <!-- Header -->
+  <header class="cv-header">
+    <div>
+      <h1 class="cv-name">{p.name}</h1>
+      <p class="cv-title">Técnico Informático & Especialista en Sistemas</p>
+    </div>
+    <div class="cv-contact">
+      <div>{p.email}</div>
+      <div>{p.phone}</div>
+      <div>{p.location}</div>
+      <div>
+        <a href="{p.website}" target="_blank">{p.website.replace('https://', '')}</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Resumen -->
+  <section class="cv-section">
+    <h2 class="cv-section-title">Resumen Profesional</h2>
+    <p class="cv-summary">
+      Técnico informático con más de 10 años de experiencia práctica especializado en administración de sistemas Linux, 
+      redes, Cloudflare, y soluciones de streaming/IPTV. Experiencia en soporte técnico remoto y presencial, 
+      administración de servidores, desarrollo web y automatización. Hablo español, inglés, francés y árabe. 
+      Trabajo de forma independiente como freelance resolviendo problemas técnicos reales para clientes en España.
+    </p>
+  </section>
+
+  <!-- Experiencia -->
+  <section class="cv-section">
+    <h2 class="cv-section-title">Experiencia Laboral</h2>
+    
+    <div class="cv-experience-item">
+      <div class="cv-exp-header">
+        <div>
+          <h3 class="cv-exp-role">Técnico Informático Freelance / Soporte IT</h3>
+          <p class="cv-exp-company">Autónomo</p>
+        </div>
+        <span class="cv-exp-period">2020 — Actualidad</span>
+      </div>
+      <p class="cv-exp-desc">
+        • Soporte técnico a clientes en España (remoto y presencial)<br>
+        • Administración de servidores Linux (Ubuntu, Debian, CentOS)<br>
+        • Configuración y optimización de Cloudflare (DNS, CDN, Workers)<br>
+        • Implementación de soluciones de streaming/IPTV (HLS, SRS, FFmpeg)<br>
+        • Desarrollo y mantenimiento de sitios web (WordPress, Astro)<br>
+        • Reparación de hardware y resolución de problemas de red<br>
+        • Automatización de procesos con Python, Bash y GitHub Actions
+      </p>
+    </div>
+
+    <div class="cv-experience-item">
+      <div class="cv-exp-header">
+        <div>
+          <h3 class="cv-exp-role">Técnico Informático</h3>
+          <p class="cv-exp-company">Tienda propia</p>
+        </div>
+        <span class="cv-exp-period">2013 — 2019</span>
+      </div>
+      <p class="cv-exp-desc">
+        • Reparación de ordenadores y dispositivos móviles<br>
+        • Montaje y venta de equipos informáticos personalizados<br>
+        • Instalación y configuración de software y sistemas operativos<br>
+        • Configuración de redes locales (LAN/Wi-Fi)<br>
+        • Atención al cliente y asesoramiento técnico<br>
+        • Gestión de inventario y proveedores
+      </p>
+    </div>
+  </section>
+
+  <!-- Habilidades Técnicas -->
+  <section class="cv-section">
+    <h2 class="cv-section-title">Habilidades Técnicas</h2>
+    <div class="cv-skills-grid">
+      {skills.map(skill => (
+        <div class="cv-skill-item">
+          <div class="cv-skill-name">
+            <span>{skill.name}</span>
+            <span>{skill.pct}%</span>
+          </div>
+          <div class="cv-skill-bar">
+            <div class="cv-skill-fill" style={`width: ${skill.pct}%`}></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Proyectos Destacados -->
+  <section class="cv-section">
+    <h2 class="cv-section-title">Proyectos Destacados</h2>
+    
+    <div class="cv-project-item">
+      <h3 class="cv-project-title">yesmatch.live</h3>
+      <p class="cv-project-category">Plataforma de Streaming Deportivo · 2024</p>
+      <p class="cv-project-desc">
+        Plataforma de streaming deportivo en árabe con infraestructura de 4 servidores, Cloudflare Workers, 
+        y sistema de subdominios hash para protección DMCA. Control remoto via bot de Telegram.
+      </p>
+    </div>
+
+    <div class="cv-project-item">
+      <h3 class="cv-project-title">pinturasmoha.es</h3>
+      <p class="cv-project-category">Sitio Web para Negocio Local · 2024</p>
+      <p class="cv-project-desc">
+        Sitio web completo para pintor profesional con blog automatizado diario usando GitHub Actions y Gemini API. 
+        Incluye CTA WhatsApp, reseñas de Google y diseño responsive.
+      </p>
+    </div>
+
+    <div class="cv-project-item">
+      <h3 class="cv-project-title">news.yesmatch.live</h3>
+      <p class="cv-project-category">Blog de Noticias Automatizado · 2024</p>
+      <p class="cv-project-desc">
+        Blog de noticias de fútbol árabe 100% automatizado con Astro, DeepSeek API y GitHub Actions. 
+        Layout RTL, SEO completo y generación diaria de contenido.
+      </p>
+    </div>
+  </section>
+
+  <!-- Idiomas -->
+  <section class="cv-section">
+    <h2 class="cv-section-title">Idiomas</h2>
+    <div class="cv-langs">
+      {langs.map(lang => (
+        <div class="cv-lang-item">
+          <span class="cv-lang-name">{lang.name_es}</span>
+          <span class="cv-lang-level">
+            {lang.pct >= 90 ? 'Nativo' : 
+             lang.pct >= 70 ? 'Avanzado' : 
+             lang.pct >= 50 ? 'Intermedio' : 'Básico'}
+          </span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Certificaciones -->
+  <section class="cv-section">
+    <h2 class="cv-section-title">Certificaciones</h2>
+    {certs.map(cert => (
+      <div class="cv-cert-item">
+        <div>
+          <h3 class="cv-cert-title">{cert.title}</h3>
+          <p class="cv-cert-org">{cert.org}</p>
+        </div>
+        <span class="cv-cert-year">{cert.year}</span>
+      </div>
+    ))}
+  </section>
+
+  <!-- Educación -->
+  <section class="cv-section">
+    <h2 class="cv-section-title">Educación</h2>
+    
+    <div class="cv-edu-item">
+      <div class="cv-edu-header">
+        <h3 class="cv-edu-title">Formación Profesional en Informática</h3>
+        <span class="cv-exp-period">Grado Medio</span>
+      </div>
+      <p class="cv-edu-org">OFPPT</p>
+      <p class="cv-edu-loc">Khouribga, Marruecos · 1 año cursado</p>
+    </div>
+
+    <div class="cv-edu-item">
+      <div class="cv-edu-header">
+        <h3 class="cv-edu-title">Bachillerato — rama PC</h3>
+        <span class="cv-exp-period">Bachillerato</span>
+      </div>
+      <p class="cv-edu-org">Ibn Abdoune High School</p>
+      <p class="cv-edu-loc">Khouribga, Marruecos · 1º curso cursado</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="margin-top: 30px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #718096; text-align: center;">
+    <p>Última actualización: {new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+    <p>CV disponible en línea en: <a href="https://mohamedch.com/cv">https://mohamedch.com/cv</a></p>
+  </footer>
+</div>

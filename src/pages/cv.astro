@@ -1,0 +1,279 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CV from '../components/CV.astro';
+import { ui, personal } from '../i18n.ts';
+
+const t = ui.es;
+const p = personal;
+---
+
+<BaseLayout title={`${p.name} — Curriculum Vitae`} lang="es"
+  description="Curriculum Vitae de Mohamed Chennani — Técnico Informático con más de 10 años de experiencia en Linux, redes, Cloudflare y streaming/IPTV.">
+
+  <div class="cv-page">
+    <!-- Header con botones -->
+    <div class="cv-header-actions">
+      <div>
+        <h1>Curriculum Vitae</h1>
+        <p class="cv-subtitle">Formato profesional A4 listo para imprimir</p>
+      </div>
+      <div class="cv-buttons">
+        <button onclick="window.print()" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          Imprimir / Guardar PDF
+        </button>
+        <a href="/" class="btn btn-ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Volver al sitio
+        </a>
+      </div>
+    </div>
+
+    <!-- Instrucciones -->
+    <div class="cv-instructions">
+      <div class="instruction">
+        <div class="instruction-icon">💡</div>
+        <div>
+          <h3>Para descargar como PDF:</h3>
+          <p>Haz clic en <strong>"Imprimir / Guardar PDF"</strong> → Selecciona <strong>"Guardar como PDF"</strong> como impresora → Ajusta márgenes a <strong>"Ninguno"</strong> → Descarga.</p>
+        </div>
+      </div>
+      <div class="instruction">
+        <div class="instruction-icon">📄</div>
+        <div>
+          <h3>Formato A4:</h3>
+          <p>Este CV está optimizado para papel A4 (210×297mm). Se verá perfecto al imprimir o convertir a PDF.</p>
+        </div>
+      </div>
+      <div class="instruction">
+        <div class="instruction-icon">🔄</div>
+        <div>
+          <h3>Actualizaciones automáticas:</h3>
+          <p>Este CV se actualiza automáticamente cuando modifico mi sitio web. Siempre tendrás la versión más reciente.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- El CV en sí -->
+    <div class="cv-preview">
+      <CV />
+    </div>
+
+    <!-- Botones al final -->
+    <div class="cv-footer-actions">
+      <button onclick="window.print()" class="btn btn-primary btn-large">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a22 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        Descargar CV en PDF
+      </button>
+      <p class="cv-note">
+        También puedes <a href="javascript:window.print()">imprimir directamente</a> o 
+        <a href="/contact">contactarme</a> si necesitas una versión personalizada.
+      </p>
+    </div>
+  </div>
+
+  <style>
+    .cv-page {
+      padding: 2rem 0 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .cv-header-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .cv-header-actions h1 {
+      font-size: 2.5rem;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
+    .cv-subtitle {
+      color: var(--text-2);
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .cv-buttons {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .cv-buttons .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+    }
+
+    .cv-instructions {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 2rem;
+      margin-bottom: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .instruction {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .instruction-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .instruction h3 {
+      font-size: 1rem;
+      margin: 0 0 0.5rem 0;
+      color: var(--text);
+    }
+
+    .instruction p {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .cv-preview {
+      background: white;
+      border-radius: var(--r-lg);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      margin-bottom: 3rem;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .cv-footer-actions {
+      text-align: center;
+      padding: 2rem;
+      background: var(--bg-alt);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+    }
+
+    .btn-large {
+      padding: 14px 28px;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .btn-large svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .cv-note {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-2);
+    }
+
+    .cv-note a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .cv-note a:hover {
+      color: var(--text-2);
+    }
+
+    /* Estilos de impresión */
+    @media print {
+      .cv-header-actions,
+      .cv-instructions,
+      .cv-footer-actions,
+      .nav,
+      .footer,
+      .waf {
+        display: none !important;
+      }
+      
+      .cv-page {
+        padding: 0;
+      }
+      
+      .cv-preview {
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .cv-header-actions {
+        flex-direction: column;
+      }
+      
+      .cv-buttons {
+        width: 100%;
+      }
+      
+      .cv-buttons .btn {
+        flex: 1;
+        justify-content: center;
+      }
+      
+      .cv-instructions {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+      }
+      
+      .cv-header-actions h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+
+  <script>
+    // Mejorar la experiencia de impresión
+    document.addEventListener('DOMContentLoaded', () => {
+      // Añadir evento antes de imprimir
+      window.addEventListener('beforeprint', () => {
+        document.body.classList.add('printing');
+      });
+      
+      window.addEventListener('afterprint', () => {
+        document.body.classList.remove('printing');
+      });
+      
+      // Mensaje de ayuda para usuarios
+      const printBtn = document.querySelector('[onclick="window.print()"]');
+      if (printBtn) {
+        printBtn.addEventListener('click', (e) => {
+          if (!e.target.closest('a')) {
+            // Mostrar mensaje útil
+            console.log('💡 Consejo: Selecciona "Guardar como PDF" como impresora para obtener el CV en formato A4.');
+          }
+        });
+      }
+    });
+  </script>
+</BaseLayout>

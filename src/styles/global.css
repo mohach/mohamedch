@@ -28,6 +28,7 @@
   --green:      #16a34a;
   --green-bg:   #f0fdf4;
   --green-bd:   #bbf7d0;
+  --accent:     #2563eb; /* Azul profesional para CV */
   --green-dot:  #22c55e;
 }
 
@@ -136,6 +137,9 @@ img  { display: block; max-width: 100%; }
 
 .btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
 .btn-primary:hover { opacity: 0.82; transform: translateY(-1px); }
+
+.btn-secondary { background: var(--accent); color: white; border-color: var(--accent); }
+.btn-secondary:hover { opacity: 0.9; transform: translateY(-1px); }
 
 .btn-ghost { background: transparent; color: var(--text-2); border-color: var(--border-mid); }
 .btn-ghost:hover { color: var(--text); background: var(--bg-alt); }
