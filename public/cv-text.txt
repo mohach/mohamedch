@@ -1,0 +1,49 @@
+MOHAMED CHENNANI
+Técnico Informático & Especialista en Sistemas
+hi@mohamedch.com · 642 074 283 · Alaquas, Valencia, Spain · https://mohamedch.com
+
+RESUMEN PROFESIONAL
+Técnico informático con más de 10 años de experiencia práctica especializado en administración de sistemas Linux, redes, Cloudflare, y soluciones de streaming/IPTV. Experiencia en soporte técnico remoto y presencial, administración de servidores, desarrollo web y automatización. Hablo español, inglés, francés y árabe. Trabajo de forma independiente como freelance resolviendo problemas técnicos reales para clientes en España.
+
+EXPERIENCIA LABORAL
+Técnico Informático Freelance / Soporte IT · Autónomo · 2020 — Actualidad
+• Soporte técnico a clientes en España (remoto y presencial)
+• Administración de servidores Linux (Ubuntu, Debian, CentOS)
+• Configuración y optimización de Cloudflare (DNS, CDN, Workers)
+• Implementación de soluciones de streaming/IPTV (HLS, SRS, FFmpeg)
+• Desarrollo y mantenimiento de sitios web (WordPress, Astro)
+• Reparación de hardware y resolución de problemas de red
+• Automatización de procesos con Python, Bash y GitHub Actions
+
+Técnico Informático · Tienda propia · 2013 — 2019
+• Reparación de ordenadores y dispositivos móviles
+• Montaje y venta de equipos informáticos personalizados
+• Instalación y configuración de software y sistemas operativos
+• Configuración de redes locales (LAN/Wi-Fi)
+• Atención al cliente y asesoramiento técnico
+• Gestión de inventario y proveedores
+
+HABILIDADES TÉCNICAS
+Linux/Unix (85%) · Redes & Networking (80%) · Cloudflare/DNS (82%)
+Nginx/Apache (78%) · Streaming/IPTV (83%) · Soporte HW/SW (88%)
+
+PROYECTOS DESTACADOS
+yesmatch.live · Plataforma de Streaming Deportivo · 2024
+Plataforma de streaming deportivo en árabe con infraestructura de 4 servidores, Cloudflare Workers, y sistema de subdominios hash para protección DMCA.
+
+pinturasmoha.es · Sitio Web para Negocio Local · 2024
+Sitio web completo para pintor profesional con blog automatizado diario usando GitHub Actions y Gemini API.
+
+IDIOMAS
+Árabe (Nativo) · Inglés (Avanzado) · Español (Intermedio) · Francés (Intermedio)
+
+CERTIFICACIONES
+Mantenimiento de dispositivos tecnológicos · Agencia Digital de Andalucía · 2025
+Aspectos básicos de la asistencia técnica · Google / Coursera · 2023
+
+EDUCACIÓN
+Formación Profesional en Informática · Grado Medio · OFPPT
+Khouribga, Marruecos · 1 año cursado
+
+Última actualización: 13 de abril de 2026
+CV disponible en línea en: https://mohamedch.com/cv
