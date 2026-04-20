@@ -140,16 +140,76 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		
+		"blog": {
+"2026-04-09-herramientas-open-source-esenciales-para-sysadmins.md": {
+	id: "2026-04-09-herramientas-open-source-esenciales-para-sysadmins.md";
+  slug: "herramientas-open-source-esenciales-para-sysadmins";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"2026-04-09-herramientas-open-source-imprescindibles-para-sysadmins.md": {
+	id: "2026-04-09-herramientas-open-source-imprescindibles-para-sysadmins.md";
+  slug: "herramientas-open-source-imprescindibles-para-sysadmins";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"2026-04-09-top-open-source-tools-for-sysadmins.md": {
+	id: "2026-04-09-top-open-source-tools-for-sysadmins.md";
+  slug: "top-open-source-tools-for-sysadmins";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"2026-04-11-how-to-contribute-to-open-source-on-github.md": {
+	id: "2026-04-11-how-to-contribute-to-open-source-on-github.md";
+  slug: "how-to-contribute-to-open-source-on-github";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"2026-04-13-boost-wordpress-pagespeed-from-50-to-100.md": {
+	id: "2026-04-13-boost-wordpress-pagespeed-from-50-to-100.md";
+  slug: "boost-wordpress-pagespeed-from-50-to-100";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"2026-04-13-optimiza-wordpress-de-50-a-100-en-pagespeed-insights.md": {
+	id: "2026-04-13-optimiza-wordpress-de-50-a-100-en-pagespeed-insights.md";
+  slug: "optimiza-wordpress-de-50-a-100-en-pagespeed-insights";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"astro-islands-lcp.md": {
+	id: "astro-islands-lcp.md";
+  slug: "astro-islands-lcp";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"contribuir-open-source.md": {
+	id: "contribuir-open-source.md";
+  slug: "contribuir-open-source";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"typescript-tipos-avanzados.md": {
+	id: "typescript-tipos-avanzados.md";
+  slug: "typescript-tipos-avanzados";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+};
+
 	};
 
 	type DataEntryMap = {
-		"blog": Record<string, {
-  id: string;
-  collection: "blog";
-  data: any;
-}>;
-
+		
 	};
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
