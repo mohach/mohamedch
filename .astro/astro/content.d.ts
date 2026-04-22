@@ -183,6 +183,62 @@ declare module 'astro:content' {
   collection: "blog";
   data: any
 } & { render(): Render[".md"] };
+"2026-04-14-guia-practica-de-apis-rest-con-ejemplos-reales.md": {
+	id: "2026-04-14-guia-practica-de-apis-rest-con-ejemplos-reales.md";
+  slug: "guia-practica-de-apis-rest-con-ejemplos-reales";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"2026-04-14-rest-apis-explained-with-real-world-examples.md": {
+	id: "2026-04-14-rest-apis-explained-with-real-world-examples.md";
+  slug: "rest-apis-explained-with-real-world-examples";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"2026-04-15-guia-practica-de-apis-rest-con-ejemplos-reales.md": {
+	id: "2026-04-15-guia-practica-de-apis-rest-con-ejemplos-reales.md";
+  slug: "guia-practica-de-apis-rest-con-ejemplos-reales";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"2026-04-15-rest-apis-explained-with-real-world-examples.md": {
+	id: "2026-04-15-rest-apis-explained-with-real-world-examples.md";
+  slug: "rest-apis-explained-with-real-world-examples";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"2026-04-17-como-funciona-https-y-ssl-tls-facil.md": {
+	id: "2026-04-17-como-funciona-https-y-ssl-tls-facil.md";
+  slug: "como-funciona-https-y-ssl-tls-facil";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"2026-04-17-how-https-and-ssl-tls-work-simply-explained.md": {
+	id: "2026-04-17-how-https-and-ssl-tls-work-simply-explained.md";
+  slug: "how-https-and-ssl-tls-work-simply-explained";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"2026-04-19-build-an-iptv-infrastructure-with-ffmpeg-and-hls.md": {
+	id: "2026-04-19-build-an-iptv-infrastructure-with-ffmpeg-and-hls.md";
+  slug: "build-an-iptv-infrastructure-with-ffmpeg-and-hls";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"2026-04-19-monta-tu-iptv-con-ffmpeg-y-hls.md": {
+	id: "2026-04-19-monta-tu-iptv-con-ffmpeg-y-hls.md";
+  slug: "monta-tu-iptv-con-ffmpeg-y-hls";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
 "astro-islands-lcp.md": {
 	id: "astro-islands-lcp.md";
   slug: "astro-islands-lcp";
